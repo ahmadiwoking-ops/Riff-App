@@ -297,7 +297,6 @@ export default function Home() {
                         <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>\u00A3{price}</span>
                         <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>{billing === 'yearly' ? (p.yearLabel || '/mo') : '/mo'}</span>
                       </div>
-                    )}
                   </div>
                   {billing === 'yearly' && (
                     <div style={{ fontSize: 12, color: 'var(--green)', marginBottom: 8 }}>Billed annually</div>

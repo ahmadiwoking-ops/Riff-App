@@ -218,7 +218,7 @@ export default function TryBot() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#050816', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ height: '100vh', maxHeight: '100dvh', background: '#050816', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Header */}
       <div style={{ padding: '16px 20px', borderBottom: '1px solid #1E2740', display: 'flex', alignItems: 'center', gap: 12 }}>
         <a href="/" style={{ color: '#64748B', textDecoration: 'none', fontSize: 22 }}>&lsaquo;</a>
@@ -240,7 +240,7 @@ export default function TryBot() {
       </div>
 
       {/* Messages */}
-      <div ref={scrollRef} style={{ flex: 1, overflowY: 'auto', padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div ref={scrollRef} style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
         {messages.map(msg => (
           <div key={msg.id} style={{ display: 'flex', justifyContent: msg.sender === 'user' ? 'flex-end' : msg.sender === 'system' ? 'center' : 'flex-start' }}>
             {msg.sender === 'system' ? (
@@ -285,7 +285,7 @@ export default function TryBot() {
 
       {/* Input */}
       {!ended && (
-        <div style={{ padding: '12px 16px 24px', borderTop: '1px solid #1E2740', display: 'flex', gap: 8 }}>
+        <div style={{ padding: '12px 16px', paddingBottom: 'calc(12px + env(safe-area-inset-bottom))', borderTop: '1px solid #1E2740', display: 'flex', gap: 8, flexShrink: 0 }}>
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
@@ -312,7 +312,7 @@ export default function TryBot() {
         .typing-dots { animation: dotPulse 1.2s infinite; }
         input::placeholder { color: #64748B; }
         @media (min-width: 768px) {
-          div[style*="minHeight: 100vh"] { max-width: 480px; margin: 0 auto; border-left: 1px solid #1E2740; border-right: 1px solid #1E2740; }
+          div[style*="height: 100vh"] { max-width: 480px; margin: 0 auto; border-left: 1px solid #1E2740; border-right: 1px solid #1E2740; }
         }
       `}</style>
     </div>

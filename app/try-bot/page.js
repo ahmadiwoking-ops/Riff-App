@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 const API = 'https://web-production-31dae.up.railway.app';
-const MAX_MESSAGES = 15;
+const MAX_MESSAGES = 7;
 
 const SAFETY_PATTERNS = [
   { pattern: /\b(kill|murder|bomb|attack|shoot|stab)\b/i, type: 'violence' },
@@ -195,12 +195,14 @@ export default function TryBot() {
       const res = await fetch(API + '/api/bot/demo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ connectionId: 'web-demo', message: text, conversationHistory: newHistory.slice(-10) }),
+        body: JSON.stringify({ connectionId: 'web-demo', message: text, conversationHistory: newHistory.slice(-6) }),
       });
-      console.log('[try-bot] status', res.status); if (res.ok) {
+      console.log('[try-bot] status', res.status);
+      if (res.ok) {
         const data = await res.json();
         botText = data.response || data.text;
       }
+      // 429 = rate limited; fall through to local Luna so the visitor still gets a smooth reply
     } catch (e) { console.error('[try-bot] fetch failed:', e); }
 
     if (!botText) {

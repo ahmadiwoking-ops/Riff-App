@@ -197,11 +197,11 @@ export default function TryBot() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ connectionId: 'web-demo', message: text, conversationHistory: newHistory.slice(-10) }),
       });
-      if (res.ok) {
+      console.log('[try-bot] status', res.status); if (res.ok) {
         const data = await res.json();
         botText = data.response || data.text;
       }
-    } catch {}
+    } catch (e) { console.error('[try-bot] fetch failed:', e); }
 
     if (!botText) {
       botText = getLocalResponse(text, newCount);

@@ -123,7 +123,7 @@ export default function Home() {
                 Riff matches you through questions, voice, and trust — not photos and swipes. Find deep connections and real friendships with people who think like you.
               </p>
               <div className="hero-btns" style={{ display: 'flex', gap: 12 }}>
-                <a href="/try-bot" class="btn-primary" style={{ display: "inline-block", textDecoration: "none" }}>Try the bot free</a>
+                <a href="/try-bot" className="btn-primary" style={{ display: "inline-block", textDecoration: "none" }}>Try the bot free</a>
                 <button className="btn-outline" onClick={() => scrollTo('how')}>See how it works</button>
               </div>
               <div className="hero-stats" style={{ display: 'flex', gap: 24, marginTop: 32 }}>

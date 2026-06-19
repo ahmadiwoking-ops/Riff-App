@@ -60,7 +60,7 @@ const FAQS = [
   { q: 'How do you prevent catfishing?', a: 'Every user submits a government ID and takes a live selfie with liveness detection (blink and head-turn prompts). Photos in the app require in-app capture and pass reverse image search. Your Trust Score is visible to your matches.' },
   { q: 'What if I don\'t like my match after the photo reveal?', a: 'Both people independently choose \'Continue\' or \'Let it fade.\' If either person chooses to fade, the connection closes gracefully. Neither person knows who made the choice. No blame, no awkwardness.' },
   { q: 'Is my data safe?', a: 'Photos and voice messages are encrypted end-to-end. Your verified identity is never shared with other users — they only see your Trust Score colour. We comply with GDPR, California privacy laws, and the EU AI Act.' },
-  { q: 'How much does it cost?', a: 'Single plan starts at \u00A33.99 for 6 months (then \u00A32.99/mo). Explorer (\u00A35.99/mo) adds more connections and priority matching. Inner Circle (\u00A311.99/mo) unlocks everything. Try the bot companion free before subscribing.' },
+  { q: 'How much does it cost?', a: 'Single plan starts at £3.99 for 6 months (then £2.99/mo). Explorer (£5.99/mo) adds more connections and priority matching. Inner Circle (£11.99/mo) unlocks everything. Try the bot companion free before subscribing.' },
 ];
 
 function scrollTo(id) {
@@ -274,7 +274,7 @@ export default function Home() {
         <div className="section">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <div className="section-label" style={{ color: 'var(--cyan)' }}>Pricing</div>
-            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Plans from \u00A32.99/month. Try the bot free.</h2>
+            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Plans from £2.99/month. Try the bot free.</h2>
             <div className="pricing-toggle">
               <button className={billing === 'monthly' ? 'active' : ''} onClick={() => setBilling('monthly')}>Monthly</button>
               <button className={billing === 'yearly' ? 'active' : ''} onClick={() => setBilling('yearly')}>
@@ -294,7 +294,7 @@ export default function Home() {
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
                     {/* Price display */}
                   <div>
-                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>\u00A3{price}</span>
+                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>£{price}</span>
                         <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>{billing === 'yearly' ? (p.yearLabel || '/mo') : '/mo'}</span>
                       </div>
                   </div>
@@ -346,7 +346,7 @@ export default function Home() {
             <Image src="/logo.png" alt="Riff" width={56} height={56} style={{ borderRadius: 14, marginBottom: 20 }} />
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, fontWeight: 700, marginBottom: 12, letterSpacing: '-0.5px' }}>Ready to riff?</h2>
             <p style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 28 }}>
-              Start from \u00A32.99/month. Answer questions. Discover someone real.
+              Start from £2.99/month. Answer questions. Discover someone real.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <button className="btn-primary">🍎 App Store</button>

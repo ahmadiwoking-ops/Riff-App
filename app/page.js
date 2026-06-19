@@ -385,14 +385,32 @@ export default function Home() {
               </p>
             </div>
             {[
-              { title: 'Product', links: ['How it works', 'Deep Connection', 'Friend Circle', 'Pricing', 'Safety'] },
-              { title: 'Company', links: ['About us', 'Blog', 'Careers', 'Press', 'Contact'] },
-              { title: 'Legal', links: ['Privacy policy', 'Terms of service', 'Cookie policy', 'GDPR', 'AI transparency'] },
+              { title: 'Product', links: [
+                { label: 'How it works', href: '/how-it-works' },
+                { label: 'Deep Connection', href: '/deep-connection' },
+                { label: 'Friend Circle', href: '/friend-circle' },
+                { label: 'Pricing', href: '/pricing' },
+                { label: 'Safety', href: '/safety' },
+              ]},
+              { title: 'Company', links: [
+                { label: 'About us', href: '/about' },
+                { label: 'Blog', href: '/blog' },
+                { label: 'Careers', href: '/careers' },
+                { label: 'Press', href: '/press' },
+                { label: 'Contact', href: '/contact' },
+              ]},
+              { title: 'Legal', links: [
+                { label: 'Privacy policy', href: '/privacy-policy' },
+                { label: 'Terms of service', href: '/terms-of-service' },
+                { label: 'Cookie policy', href: '/cookie-policy' },
+                { label: 'GDPR', href: '/gdpr' },
+                { label: 'AI transparency', href: '/ai-transparency' },
+              ]},
             ].map((col, i) => (
               <div key={i}>
                 <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 14, color: 'var(--text-secondary)' }}>{col.title}</div>
                 {col.links.map((l, li) => (
-                  <div key={li} style={{ fontSize: 13, color: 'var(--text-dim)', padding: '5px 0', cursor: 'pointer' }}>{l}</div>
+                  <a key={li} href={l.href} style={{ display: 'block', fontSize: 13, color: 'var(--text-dim)', padding: '5px 0', textDecoration: 'none' }}>{l.label}</a>
                 ))}
               </div>
             ))}

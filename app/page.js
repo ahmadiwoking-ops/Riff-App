@@ -37,19 +37,19 @@ const SAFETY = [
 
 const PRICING = [
   {
-    tier: 'Free', priceM: '0', priceY: '0', color: '#94A3B8', desc: 'Start connecting',
-    features: ['1 Deep Connection', '1 Friend Circle', 'Practice mode included', 'ID verification', 'Basic matching', 'Trust score visible'],
-    cta: 'Get started free',
+    tier: 'Single', priceM: '2.99', priceY: '3.99', color: '#EC4899', desc: '1 deep connection',
+    features: ['1 Deep Connection', '1 Friend Circle', '\u{1F7E2} Green verification included', 'Text + voice messaging', 'Photo reveal'],
+    cta: 'Get started', yearLabel: '/6 months', introOffer: true,
   },
   {
-    tier: 'Explorer', priceM: '7.99', priceY: '4.99', color: '#22D3EE', desc: 'More connections', popular: true,
-    features: ['2 Deep Connections', '3 Friend Circles', 'Priority matching', 'Circle merge access', 'Submit custom questions', 'Advanced compatibility insights'],
-    cta: 'Start exploring',
+    tier: 'Explorer', priceM: '5.99', priceY: '3.79', color: '#22D3EE', desc: 'More connections', popular: true,
+    features: ['2 Deep Connections', '3 Friend Circles', '\u{1F7E2} Green verification included', 'Priority matching', 'Custom questions'],
+    cta: 'Start exploring', yearLabel: '/mo',
   },
   {
-    tier: 'Inner Circle', priceM: '14.99', priceY: '9.99', color: '#F59E0B', desc: 'Full experience',
-    features: ['Unlimited connections', 'Unlimited circles', 'Circle analytics', 'Create private circles', 'Early access features', 'Personalised matching AI'],
-    cta: 'Go unlimited',
+    tier: 'Inner Circle', priceM: '11.99', priceY: '7.49', color: '#F59E0B', desc: 'Full experience',
+    features: ['Unlimited connections', 'Unlimited circles', '\u{1F7E2} Green verification included', 'Circle analytics', 'Early access features'],
+    cta: 'Go all in', yearLabel: '/mo',
   },
 ];
 
@@ -60,7 +60,7 @@ const FAQS = [
   { q: 'How do you prevent catfishing?', a: 'Every user submits a government ID and takes a live selfie with liveness detection (blink and head-turn prompts). Photos in the app require in-app capture and pass reverse image search. Your Trust Score is visible to your matches.' },
   { q: 'What if I don\'t like my match after the photo reveal?', a: 'Both people independently choose \'Continue\' or \'Let it fade.\' If either person chooses to fade, the connection closes gracefully. Neither person knows who made the choice. No blame, no awkwardness.' },
   { q: 'Is my data safe?', a: 'Photos and voice messages are encrypted end-to-end. Your verified identity is never shared with other users — they only see your Trust Score colour. We comply with GDPR, California privacy laws, and the EU AI Act.' },
-  { q: 'How much does it cost?', a: 'Riff is free to start with 1 Deep Connection and 1 Friend Circle. Explorer ($7.99/mo) adds more simultaneous connections and priority matching. Inner Circle ($14.99/mo) unlocks everything.' },
+  { q: 'How much does it cost?', a: 'Single plan starts at \u00A33.99 for 6 months (then \u00A32.99/mo). Explorer (\u00A35.99/mo) adds more connections and priority matching. Inner Circle (\u00A311.99/mo) unlocks everything. Try the bot companion free before subscribing.' },
 ];
 
 function scrollTo(id) {
@@ -123,7 +123,7 @@ export default function Home() {
                 Riff matches you through questions, voice, and trust — not photos and swipes. Find deep connections and real friendships with people who think like you.
               </p>
               <div className="hero-btns" style={{ display: 'flex', gap: 12 }}>
-                <button className="btn-primary">Download free</button>
+                <button className="btn-primary">Try the bot free</button>
                 <button className="btn-outline" onClick={() => scrollTo('how')}>See how it works</button>
               </div>
               <div className="hero-stats" style={{ display: 'flex', gap: 24, marginTop: 32 }}>
@@ -274,11 +274,11 @@ export default function Home() {
         <div className="section">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <div className="section-label" style={{ color: 'var(--cyan)' }}>Pricing</div>
-            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Start free. Upgrade when you&apos;re ready.</h2>
+            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Plans from \u00A32.99/month. Try the bot free.</h2>
             <div className="pricing-toggle">
               <button className={billing === 'monthly' ? 'active' : ''} onClick={() => setBilling('monthly')}>Monthly</button>
               <button className={billing === 'yearly' ? 'active' : ''} onClick={() => setBilling('yearly')}>
-                Yearly <span style={{ fontSize: 11, color: 'var(--green)', marginLeft: 4 }}>Save 37%</span>
+                6 months+ <span style={{ fontSize: 11, color: 'var(--green)', marginLeft: 4 }}>Best value</span>
               </button>
             </div>
           </div>
@@ -288,19 +288,18 @@ export default function Home() {
               return (
                 <div key={i} className="glass" style={{ padding: 28, position: 'relative', border: p.popular ? '1.5px solid rgba(34,211,238,0.3)' : undefined }}>
                   {p.popular && <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', fontSize: 11, fontWeight: 600, padding: '4px 14px', borderRadius: 20, background: 'var(--gradient)', color: '#fff', whiteSpace: 'nowrap' }}>Most popular</div>}
+                  {p.introOffer && billing === 'yearly' && <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', fontSize: 11, fontWeight: 600, padding: '4px 14px', borderRadius: 20, background: '#EC4899', color: '#fff', whiteSpace: 'nowrap' }}>Special offer</div>}
                   <div style={{ fontSize: 14, fontWeight: 600, color: p.color, marginBottom: 4 }}>{p.tier}</div>
                   <div style={{ fontSize: 12, color: 'var(--text-dim)', marginBottom: 16 }}>{p.desc}</div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
-                    {price === '0' ? (
-                      <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>Free</span>
-                    ) : (
-                      <div>
-                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>${price}</span>
-                        <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>/mo</span>
+                    {/* Price display */}
+                  <div>
+                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>\u00A3{price}</span>
+                        <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>{billing === 'yearly' ? (p.yearLabel || '/mo') : '/mo'}</span>
                       </div>
                     )}
                   </div>
-                  {billing === 'yearly' && price !== '0' && (
+                  {billing === 'yearly' && (
                     <div style={{ fontSize: 12, color: 'var(--green)', marginBottom: 8 }}>Billed annually</div>
                   )}
                   <div style={{ height: 1, background: 'var(--border)', margin: '16px 0' }} />
@@ -348,7 +347,7 @@ export default function Home() {
             <Image src="/logo.png" alt="Riff" width={56} height={56} style={{ borderRadius: 14, marginBottom: 20 }} />
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, fontWeight: 700, marginBottom: 12, letterSpacing: '-0.5px' }}>Ready to riff?</h2>
             <p style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 28 }}>
-              Download free. Start with questions. Discover someone real.
+              Start from \u00A32.99/month. Answer questions. Discover someone real.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <button className="btn-primary">🍎 App Store</button>

@@ -192,7 +192,7 @@ export default function TryBot() {
     // Try API first, fallback to local
     let botText;
     try {
-      const res = await fetch(API + '/api/bot/respond', {
+      const res = await fetch(API + '/api/bot/demo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ connectionId: 'web-demo', message: text, conversationHistory: newHistory.slice(-10) }),

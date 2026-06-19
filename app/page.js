@@ -37,7 +37,7 @@ const SAFETY = [
 
 const PRICING = [
   {
-    tier: 'Single', priceM: '2.99', priceY: '3.99', color: '#EC4899', desc: '1 deep connection',
+    tier: 'Single', priceM: '2.99', priceY: '3.99', color: '#EC4899', desc: '1 deep connection', isIntro: true,
     features: ['1 Deep Connection', '1 Friend Circle', '\u{1F7E2} Green verification included', 'Text + voice messaging', 'Photo reveal'],
     cta: 'Get started', yearLabel: '/6 months', introOffer: true,
   },
@@ -294,12 +294,27 @@ export default function Home() {
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
                     {/* Price display */}
                   <div>
-                        <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>£{price}</span>
-                        <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>{billing === 'yearly' ? (p.yearLabel || '/mo') : '/mo'}</span>
+                        {p.isIntro && billing === 'yearly' ? (
+                          <>
+                            <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>£3.99</span>
+                            <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>/6 months</span>
+                          </>
+                        ) : (
+                          <>
+                            <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>£{price}</span>
+                            <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>{billing === 'yearly' ? (p.yearLabel || '/mo') : '/mo'}</span>
+                          </>
+                        )}
                       </div>
                   </div>
-                  {billing === 'yearly' && (
+                  {billing === 'yearly' && !p.isIntro && (
                     <div style={{ fontSize: 12, color: 'var(--green)', marginBottom: 8 }}>Billed annually</div>
+                  )}
+                  {p.isIntro && billing === 'yearly' && (
+                    <div style={{ fontSize: 12, color: '#EC4899', marginBottom: 8 }}>Then £2.99/month or £29.88/year</div>
+                  )}
+                  {p.isIntro && billing === 'monthly' && (
+                    <div style={{ fontSize: 12, color: '#EC4899', marginBottom: 8 }}>Start with £3.99 for your first 6 months</div>
                   )}
                   <div style={{ height: 1, background: 'var(--border)', margin: '16px 0' }} />
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>

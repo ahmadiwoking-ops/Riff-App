@@ -539,7 +539,7 @@ function VoiceStage({ mode, onComplete }) {
 }
 
 // ═══ PHOTO REVEAL ═══
-function RevealStage({ onComplete }) {
+function RevealStage({ onContinue, onFade }) {
   const [countdown, setCountdown] = useState(3);
   const [revealed, setRevealed] = useState(false);
   useEffect(() => {
@@ -562,28 +562,159 @@ function RevealStage({ onComplete }) {
         </div>
         <div style={{ fontFamily: 'var(--font-heading)', fontSize: 20, fontWeight: 700, color: '#E2E8F0', marginBottom: 6 }}>Photos revealed</div>
         <div style={{ fontSize: 13, color: '#94A3B8', marginBottom: 24 }}>No power imbalance. Both at the same moment.</div>
-        <button onClick={onComplete} style={{ padding: '12px 28px', borderRadius: 12, border: 'none', background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>Continue →</button>
+        <div style={{ fontSize: 14, color: '#E2E8F0', marginBottom: 16 }}>Would you like to continue with Luna?</div>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <button onClick={onContinue} style={{ padding: '14px 28px', borderRadius: 14, border: 'none', background: 'linear-gradient(135deg, #22C55E, #16A34A)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>Continue →</button>
+          <button onClick={onFade} style={{ padding: '14px 28px', borderRadius: 14, border: '1.5px solid #334155', background: 'transparent', color: '#94A3B8', fontWeight: 500, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>Fade</button>
+        </div>
       </>)}
     </div>
   );
 }
 
-// ═══ FINAL ═══
-function FinalStage() {
+// ═══ VIDEO CHAT ═══
+function VideoStage({ onComplete }) {
+  const [step, setStep] = useState(0); // 0=connecting, 1=call, 2=ended
+  const [callTime, setCallTime] = useState(0);
+
+  useEffect(() => {
+    if (step === 0) { const t = setTimeout(() => setStep(1), 2500); return () => clearTimeout(t); }
+  }, [step]);
+
+  useEffect(() => {
+    if (step === 1 && callTime < 15) { const t = setTimeout(() => setCallTime(c => c + 1), 1000); return () => clearTimeout(t); }
+    if (step === 1 && callTime >= 15) setStep(2);
+  }, [step, callTime]);
+
+  const formatTime = (s) => `0:${s.toString().padStart(2, '0')}`;
+
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
-      <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(139,92,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}><span style={{ fontSize: 36 }}>🎉</span></div>
-      <div style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 700, color: '#E2E8F0', marginBottom: 10 }}>Deep connection activated</div>
-      <div style={{ padding: 20, borderRadius: 16, background: '#0F1420', border: '1px solid rgba(255,255,255,0.06)', marginBottom: 20, maxWidth: 320 }}>
-        <p style={{ fontSize: 14, color: '#94A3B8', lineHeight: 1.7 }}>If both parties continue, the full deep connection is activated — allowing access to all features: text, voice, and video.</p>
+      <div style={{ marginBottom: 16 }}><span style={{ fontSize: 11, fontWeight: 600, color: '#8B5CF6' }}>VIDEO CALL</span></div>
+
+      {step === 0 && (<>
+        <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'rgba(139,92,246,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, animation: 'pulse 1.5s infinite' }}>
+          <span style={{ fontSize: 44 }}>📹</span>
+        </div>
+        <div style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 600, color: '#E2E8F0', marginBottom: 6 }}>Connecting to Luna...</div>
+        <div style={{ fontSize: 13, color: '#94A3B8' }}>Setting up secure video</div>
+      </>)}
+
+      {step === 1 && (<>
+        <div style={{ display: 'flex', gap: 16, marginBottom: 20 }}>
+          <div style={{ width: 140, height: 180, borderRadius: 20, background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative' }}>
+            <span style={{ fontSize: 44, marginBottom: 8 }}>👩</span>
+            <span style={{ fontSize: 12, fontWeight: 600, color: '#fff' }}>Luna</span>
+            <div style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderRadius: '50%', background: '#22C55E' }} />
+          </div>
+          <div style={{ width: 140, height: 180, borderRadius: 20, background: 'linear-gradient(135deg, #22D3EE, #84CC16)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative' }}>
+            <span style={{ fontSize: 44, marginBottom: 8 }}>🧑</span>
+            <span style={{ fontSize: 12, fontWeight: 600, color: '#fff' }}>You</span>
+            <div style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderRadius: '50%', background: '#22C55E' }} />
+          </div>
+        </div>
+        <div style={{ fontFamily: 'var(--font-heading)', fontSize: 28, fontWeight: 700, color: '#E2E8F0', marginBottom: 4 }}>{formatTime(callTime)}</div>
+        <div style={{ fontSize: 13, color: '#22C55E', marginBottom: 16 }}>Video call in progress</div>
+        <div style={{ display: 'flex', gap: 12 }}>
+          {[{ icon: '🔇', label: 'Mute' }, { icon: '📷', label: 'Camera' }, { icon: '💬', label: 'Chat' }].map((b, i) => (
+            <div key={i} style={{ width: 48, height: 48, borderRadius: 14, background: '#151B2B', border: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>{b.icon}</div>
+          ))}
+          <button onClick={() => setStep(2)} style={{ width: 48, height: 48, borderRadius: 14, background: '#EF4444', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, cursor: 'pointer' }}>📞</button>
+        </div>
+      </>)}
+
+      {step === 2 && (<>
+        <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(139,92,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+          <span style={{ fontSize: 36 }}>📹</span>
+        </div>
+        <div style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 600, color: '#E2E8F0', marginBottom: 4 }}>Call ended</div>
+        <div style={{ fontSize: 13, color: '#94A3B8', marginBottom: 6 }}>Duration: {formatTime(callTime)}</div>
+        <div style={{ fontSize: 13, color: '#64748B', marginBottom: 24 }}>Luna also wants to continue this connection.</div>
+        <div style={{ fontSize: 15, color: '#E2E8F0', marginBottom: 16, fontWeight: 500 }}>Do you want to continue this match?</div>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <button onClick={() => onComplete('continue')} style={{ padding: '14px 28px', borderRadius: 14, border: 'none', background: 'linear-gradient(135deg, #22C55E, #16A34A)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>Continue match</button>
+          <button onClick={() => onComplete('fade')} style={{ padding: '14px 28px', borderRadius: 14, border: '1.5px solid #334155', background: 'transparent', color: '#94A3B8', fontWeight: 500, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>Fade match</button>
+        </div>
+      </>)}
+    </div>
+  );
+}
+
+// ═══ FADE SCREEN ═══
+function FadeStage() {
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+      <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(100,116,139,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+        <span style={{ fontSize: 36 }}>🌙</span>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%', maxWidth: 280, marginBottom: 24 }}>
-        {['Unlimited text messaging', 'Voice and video calls', 'Life chapters exchange', 'Shared memories timeline'].map((f, i) => (
-          <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '8px 12px', borderRadius: 10, background: '#151B2B' }}><span style={{ color: '#22C55E', fontSize: 14 }}>✓</span><span style={{ fontSize: 13, color: '#E2E8F0' }}>{f}</span></div>
+      <div style={{ fontFamily: 'var(--font-heading)', fontSize: 20, fontWeight: 700, color: '#E2E8F0', marginBottom: 8 }}>Match faded gracefully</div>
+      <div style={{ padding: 20, borderRadius: 16, background: '#0F1420', border: '1px solid rgba(255,255,255,0.06)', marginBottom: 24, maxWidth: 320 }}>
+        <p style={{ fontSize: 14, color: '#94A3B8', lineHeight: 1.7 }}>No awkwardness. No ghosting. Just a respectful end that both people feel okay about. That is how Riff works.</p>
+      </div>
+      <div style={{ fontSize: 14, color: '#94A3B8', marginBottom: 20 }}>In the real app, you would be matched with someone new based on your compatibility answers.</div>
+      <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £2.99/mo</a>
+    </div>
+  );
+}
+
+// ═══ FINAL CELEBRATION ═══
+function FinalStage({ mode }) {
+  const [showFeatures, setShowFeatures] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setShowFeatures(true), 1200); return () => clearTimeout(t); }, []);
+
+  if (mode === 'deep') {
+    return (
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+        <div style={{ fontSize: 64, marginBottom: 12, animation: 'fadeIn 1s ease' }}>🎉</div>
+        <div style={{ fontFamily: 'var(--font-heading)', fontSize: 26, fontWeight: 800, marginBottom: 4 }}>
+          <span style={{ background: 'linear-gradient(135deg, #8B5CF6, #EC4899, #F59E0B, #22D3EE)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Congratulations!</span>
+        </div>
+        <div style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 600, color: '#E2E8F0', marginBottom: 6 }}>Both parties chose to continue</div>
+        <div style={{ fontSize: 14, color: '#94A3B8', marginBottom: 24 }}>All features are now unlocked</div>
+
+        {showFeatures && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%', maxWidth: 300, marginBottom: 24, animation: 'fadeIn 0.8s ease' }}>
+            {[
+              { icon: '💬', label: 'Unlimited chat', desc: 'Text messaging with no limits', color: '#22D3EE' },
+              { icon: '🎙', label: 'Voice messages', desc: 'Send and receive voice notes anytime', color: '#F59E0B' },
+              { icon: '📹', label: 'Video calls', desc: 'Face-to-face whenever you want', color: '#8B5CF6' },
+              { icon: '📖', label: 'Life chapters', desc: 'Share your deeper stories', color: '#EC4899' },
+              { icon: '📸', label: 'Shared memories', desc: 'Build a timeline together', color: '#84CC16' },
+            ].map((f, i) => (
+              <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '12px 14px', borderRadius: 14, background: '#0F1420', border: '1px solid rgba(255,255,255,0.06)', animation: `fadeIn ${0.3 + i * 0.15}s ease` }}>
+                <div style={{ width: 40, height: 40, borderRadius: 10, background: `${f.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>{f.icon}</div>
+                <div style={{ textAlign: 'left' }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: '#E2E8F0' }}>{f.label}</div>
+                  <div style={{ fontSize: 12, color: '#64748B' }}>{f.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div style={{ fontSize: 14, color: '#94A3B8', marginBottom: 20 }}>That was a taste of Riff. Ready for the real thing?</div>
+        <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £2.99/mo</a>
+      </div>
+    );
+  }
+
+  // Friend Circle final
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+      <div style={{ fontSize: 64, marginBottom: 12, animation: 'fadeIn 1s ease' }}>🎉</div>
+      <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24, fontWeight: 800 }}>
+        <span style={{ background: 'linear-gradient(135deg, #84CC16, #22D3EE)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Circle connected!</span>
+      </div>
+      <div style={{ fontSize: 14, color: '#94A3B8', marginTop: 8, marginBottom: 20 }}>Your friend circle is now fully unlocked — group chat, voice, games, and meetup planning.</div>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 24 }}>
+        {[...CIRCLE_MEMBERS, { name: 'You', color: '#F59E0B', initial: 'Y' }].map((m, i) => (
+          <div key={i} style={{ width: 44, height: 44, borderRadius: 12, background: `${m.color}22`, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: `fadeIn ${0.3 + i * 0.15}s ease` }}>
+            <span style={{ fontSize: 16, fontWeight: 700, color: m.color }}>{m.initial}</span>
+          </div>
         ))}
       </div>
       <div style={{ fontSize: 14, color: '#94A3B8', marginBottom: 20 }}>That was a taste of Riff. Ready for the real thing?</div>
-      <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £2.99/mo</a>
+      <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #84CC16, #22C55E)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £2.99/mo</a>
     </div>
   );
 }
@@ -596,7 +727,9 @@ export default function TryBot() {
   function handleQuestionsComplete() { setStage('matchfound'); }
   function handleMatchComplete() { setStage(mode === 'deep' ? 'chat' : 'groupchat'); }
 
-  const stageOrder = ['verify','mode','questions','matchfound', mode === 'deep' ? 'chat' : 'groupchat', 'voice', mode === 'deep' ? 'reveal' : null, 'final'].filter(Boolean);
+  const stageOrder = mode === 'deep'
+    ? ['verify','mode','questions','matchfound','chat','voice','reveal','video','final']
+    : ['verify','mode','questions','matchfound','groupchat','voice','final'];
   const currentIdx = stageOrder.indexOf(stage);
 
   return (
@@ -619,8 +752,10 @@ export default function TryBot() {
       {stage === 'chat' && <ChatStage onComplete={() => setStage('voice')} />}
       {stage === 'groupchat' && <GroupChatStage onComplete={() => setStage('voice')} />}
       {stage === 'voice' && <VoiceStage mode={mode} onComplete={() => setStage(mode === 'circle' ? 'final' : 'reveal')} />}
-      {stage === 'reveal' && <RevealStage onComplete={() => setStage('final')} />}
-      {stage === 'final' && <FinalStage />}
+      {stage === 'reveal' && <RevealStage onContinue={() => setStage('video')} onFade={() => setStage('fade')} />}
+      {stage === 'video' && <VideoStage onComplete={(decision) => setStage(decision === 'continue' ? 'final' : 'fade')} />}
+      {stage === 'fade' && <FadeStage />}
+      {stage === 'final' && <FinalStage mode={mode} />}
 
       <style jsx>{`
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.05); } }

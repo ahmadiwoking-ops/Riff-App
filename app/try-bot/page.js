@@ -499,7 +499,7 @@ function VoiceStage({ mode, onComplete }) {
 
   useEffect(() => {
     if (playing && progress < 100) { const t = setTimeout(() => setProgress(p => p + 4), 120); return () => clearTimeout(t); }
-    if (playing && progress >= 100) { setPlaying(false); if (current < voiceMessages.length - 1) setTimeout(() => setCurrent(c => c + 1), 800); }
+    if (playing && progress >= 100) { setPlaying(false); setTimeout(() => { setProgress(0); setCurrent(c => c + 1); }, 1200); }
   }, [playing, progress]);
   function playMsg() { setPlaying(true); setProgress(0); }
   function startRec() { setRecording(true); setTimeout(() => { setRecording(false); setRecorded(true); setTimeout(() => setCurrent(c => c + 1), 1000); }, 3000); }

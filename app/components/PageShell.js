@@ -39,7 +39,7 @@ export default function PageShell({ children, title, subtitle, accent }) {
             <Link href="/#how" className="nav-link">How it works</Link>
             <Link href="/#safety" className="nav-link">Safety</Link>
             <Link href="/#pricing" className="nav-link">Pricing</Link>
-            <Link href="/try-bot" className="btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>Try Riff free</Link>
+            <Link href="/try-bot" className="btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>Try Riff Demo Free</Link>
           </div>
         </div>
       </nav>

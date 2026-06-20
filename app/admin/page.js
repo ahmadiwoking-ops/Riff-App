@@ -53,9 +53,13 @@ export default function AdminPage() {
 
   async function login() {
     setLoginError('');
+    const trimEmail = email.trim().toLowerCase();
+    const trimPass = password.trim();
+    console.log('Login attempt:', trimEmail, trimPass.length, 'chars');
     try {
-      const res = await fetch(API + '/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) });
+      const res = await fetch(API + '/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: trimEmail, password: trimPass }) });
       const data = await res.json();
+      console.log('Login response:', res.status, data);
       if (!res.ok) throw new Error(data.error || 'Login failed');
       setToken(data.token);
     } catch (e) { setLoginError(e.message); }

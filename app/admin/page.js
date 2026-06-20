@@ -53,13 +53,9 @@ export default function AdminPage() {
 
   async function login() {
     setLoginError('');
-    const trimEmail = email.trim().toLowerCase();
-    const trimPass = password.trim();
-    console.log('Login attempt:', trimEmail, trimPass.length, 'chars');
     try {
-      const res = await fetch(API + '/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: trimEmail, password: trimPass }) });
+      const res = await fetch(API + '/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) });
       const data = await res.json();
-      console.log('Login response:', res.status, data);
       if (!res.ok) throw new Error(data.error || 'Login failed');
       setToken(data.token);
     } catch (e) { setLoginError(e.message); }
@@ -199,16 +195,24 @@ export default function AdminPage() {
             <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: 22, fontWeight: 700, color: '#E2E8F0', marginBottom: 16 }}>Users</h2>
             <input value={userSearch} onChange={e => setUserSearch(e.target.value)} placeholder="Search by alias or email..." style={{ width: '100%', maxWidth: 400, padding: '10px 14px', borderRadius: 12, border: '1px solid #1E2740', background: '#151B2B', color: '#E2E8F0', fontSize: 14, marginBottom: 16, outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' }} />
             <div style={{ borderRadius: 16, border: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 2fr 0.8fr 0.8fr 0.8fr', padding: '10px 16px', background: '#0F1420', fontSize: 11, fontWeight: 600, color: '#64748B', textTransform: 'uppercase', letterSpacing: 0.5 }}>
-                <span>Alias</span><span>Email</span><span>Plan</span><span>Trust</span><span>Status</span>
+              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1.8fr 0.7fr 0.6fr 0.7fr 1.2fr', padding: '10px 16px', background: '#0F1420', fontSize: 11, fontWeight: 600, color: '#64748B', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                <span>Alias</span><span>Email</span><span>Plan</span><span>Trust</span><span>Status</span><span>Actions</span>
               </div>
               {users.map((u, i) => (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.5fr 2fr 0.8fr 0.8fr 0.8fr', padding: '12px 16px', borderTop: '1px solid rgba(255,255,255,0.04)', fontSize: 13, color: '#94A3B8', alignItems: 'center' }}>
+                <div key={u.id || i} style={{ display: 'grid', gridTemplateColumns: '1.2fr 1.8fr 0.7fr 0.6fr 0.7fr 1.2fr', padding: '12px 16px', borderTop: '1px solid rgba(255,255,255,0.04)', fontSize: 13, color: '#94A3B8', alignItems: 'center' }}>
                   <span style={{ color: '#E2E8F0', fontWeight: 500 }}>{u.alias}</span>
-                  <span>{u.email}</span>
+                  <span style={{ fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{u.email}</span>
                   <span style={{ color: u.plan === 'free' ? '#64748B' : '#22C55E' }}>{u.plan}</span>
                   <span style={{ color: u.trustScore === 'green' ? '#22C55E' : u.trustScore === 'yellow' ? '#F59E0B' : '#EF4444' }}>●</span>
-                  <span style={{ color: u.isBanned ? '#EF4444' : '#22C55E' }}>{u.isBanned ? 'Banned' : 'Active'}</span>
+                  <span style={{ color: u.isBanned ? '#EF4444' : '#22C55E', fontSize: 12 }}>{u.isBanned ? 'Banned' : 'Active'}</span>
+                  <div style={{ display: 'flex', gap: 6 }}>
+                    {u.isBanned ? (
+                      <button onClick={async () => { try { await adminFetch('/api/admin/users/' + u.id + '/unban', { method: 'POST' }); setUsers(prev => prev.map(usr => usr.id === u.id ? { ...usr, isBanned: false } : usr)); } catch {} }} style={{ padding: '4px 10px', borderRadius: 6, border: 'none', background: '#22C55E', color: '#fff', fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Unban</button>
+                    ) : (
+                      <button onClick={async () => { if (!confirm('Ban ' + u.alias + '? They will lose access to all features.')) return; try { await adminFetch('/api/admin/users/' + u.id + '/ban', { method: 'POST', body: JSON.stringify({ reason: 'Banned by admin' }) }); setUsers(prev => prev.map(usr => usr.id === u.id ? { ...usr, isBanned: true } : usr)); } catch {} }} style={{ padding: '4px 10px', borderRadius: 6, border: 'none', background: '#F59E0B', color: '#000', fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Ban</button>
+                    )}
+                    <button onClick={async () => { if (!confirm('Permanently delete ' + u.alias + '? This cannot be undone.')) return; if (!confirm('Are you absolutely sure? All messages, connections, and data for ' + u.alias + ' will be permanently destroyed.')) return; try { await adminFetch('/api/admin/users/' + u.id + '/delete', { method: 'POST' }); setUsers(prev => prev.filter(usr => usr.id !== u.id)); } catch (e) { alert('Delete failed: ' + e.message); } }} style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid #EF4444', background: 'transparent', color: '#EF4444', fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Delete</button>
+                  </div>
                 </div>
               ))}
               {users.length === 0 && <div style={{ padding: 20, textAlign: 'center', color: '#64748B', fontSize: 13 }}>No users found</div>}

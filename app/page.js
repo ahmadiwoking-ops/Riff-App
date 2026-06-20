@@ -123,7 +123,7 @@ export default function Home() {
                 Riff matches you through questions, voice, and trust — not photos and swipes. Find deep connections and real friendships with people who think like you.
               </p>
               <div className="hero-btns" style={{ display: 'flex', gap: 12 }}>
-                <a href="/try-bot" className="btn-primary" style={{ display: "inline-block", textDecoration: "none" }}>Try the bot free</a>
+                <a href="/try-bot" className="btn-primary" style={{ display: "inline-block", textDecoration: "none" }}>Try Riff Demo Free</a>
                 <button className="btn-outline" onClick={() => scrollTo('how')}>See how it works</button>
               </div>
               <div className="hero-stats" style={{ display: 'flex', gap: 24, marginTop: 32 }}>
@@ -274,7 +274,7 @@ export default function Home() {
         <div className="section">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <div className="section-label" style={{ color: 'var(--cyan)' }}>Pricing</div>
-            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Plans from £2.99/month. Try the bot free.</h2>
+            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Plans from £2.99/month. Try Riff Demo Free.</h2>
             <div className="pricing-toggle">
               <button className={billing === 'monthly' ? 'active' : ''} onClick={() => setBilling('monthly')}>Monthly</button>
               <button className={billing === 'yearly' ? 'active' : ''} onClick={() => setBilling('yearly')}>

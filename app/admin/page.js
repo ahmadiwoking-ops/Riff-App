@@ -213,7 +213,6 @@ export default function AdminPage() {
                       ) : (
                         <button onClick={async () => { if (!confirm('Ban ' + u.alias + '? They will lose access to all features.')) return; try { await adminFetch('/api/admin/users/' + u.id + '/ban', { method: 'POST', body: JSON.stringify({ reason: 'Banned by admin' }) }); setUsers(prev => prev.map(usr => usr.id === u.id ? { ...usr, isBanned: true } : usr)); } catch {} }} style={{ padding: '4px 10px', borderRadius: 6, border: 'none', background: '#F59E0B', color: '#000', fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Ban</button>
                       )}
-                      <button onClick={async () => { if (!confirm('Permanently delete ' + u.alias + '? This cannot be undone.')) return; if (!confirm('Are you absolutely sure? All data for ' + u.alias + ' will be permanently destroyed.')) return; try { await adminFetch('/api/admin/users/' + u.id + '/delete', { method: 'POST' }); setUsers(prev => prev.filter(usr => usr.id !== u.id)); } catch (e) { alert('Delete failed: ' + e.message); } }} style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid #EF4444', background: 'transparent', color: '#EF4444', fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Delete</button>
                     </div>
                   </div>
                   {expandedUser === u.id && (

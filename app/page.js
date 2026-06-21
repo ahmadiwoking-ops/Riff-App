@@ -203,7 +203,7 @@ export default function Home() {
         <div className="section">
           <div className="section-label" style={{ color: 'var(--pink)' }}>Two ways to connect</div>
           <h2 className="section-title">Deep bonds or friend groups. You choose.</h2>
-          <p className="section-sub" style={{ marginBottom: 48 }}>Run both modes simultaneously. Find love and friendship in the same app.</p>
+          <p className="section-sub" style={{ marginBottom: 48 }}>Run both modes simultaneously. Find deep & meaningful connections and friendship in the same app.</p>
           <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {FEATURES.map((f, i) => (
               <div key={i} className="glass" style={{ padding: 28, position: 'relative', overflow: 'hidden' }}>

@@ -105,9 +105,9 @@ export default function Pricing() {
                 </div>
 
                 {p.ctaStyle === 'primary' ? (
-                  <button className="btn-primary" style={{ width: '100%', padding: '14px 0' }}>{p.cta}</button>
+                  <a href="/get-started" className="btn-primary" style={{ width: '100%', padding: '14px 0', textDecoration: 'none' }}>{p.cta}</a>
                 ) : (
-                  <button className="btn-outline" style={{ width: '100%', padding: '14px 0' }}>{p.cta}</button>
+                  <a href="/get-started" className="btn-outline" style={{ width: '100%', padding: '14px 0', textDecoration: 'none' }}>{p.cta}</a>
                 )}
               </div>
             </div>

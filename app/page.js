@@ -325,7 +325,7 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                  <button className={p.popular ? 'btn-primary' : 'btn-outline'} style={{ width: '100%', padding: 12, fontSize: 13 }}>{p.cta}</button>
+                  <a href="/get-started" className={p.popular ? 'btn-primary' : 'btn-outline'} style={{ width: '100%', padding: 12, fontSize: 13, textDecoration: 'none' }}>{p.cta}</a>
                 </div>
               );
             })}

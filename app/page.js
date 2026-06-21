@@ -127,7 +127,7 @@ export default function Home() {
                 <button className="btn-outline" onClick={() => scrollTo('how')}>See how it works</button>
               </div>
               <div className="hero-stats" style={{ display: 'flex', gap: 24, marginTop: 32 }}>
-                {[['10K+', 'Active users'], ['4.9★', 'App Store'], ['152', 'Countries']].map((s, i) => (
+                {[['25 Questions', 'Deep matching'], ['72%+', 'Min compatibility'], ['3-Tier', 'ID verification']].map((s, i) => (
                   <div key={i}>
                     <div style={{ fontSize: 22, fontWeight: 700, fontFamily: 'var(--font-heading)' }}>{s[0]}</div>
                     <div style={{ fontSize: 12, color: 'var(--text-dim)' }}>{s[1]}</div>

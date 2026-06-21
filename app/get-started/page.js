@@ -216,7 +216,7 @@ export default function GetStarted() {
               <div>
                 <label style={labelStyle}>I am</label>
                 <div style={{ display: 'flex', gap: 6 }}>
-                  {['Male', 'Female', 'Other'].map(g => (
+                  {['Male', 'Female', 'Non-binary'].map(g => (
                     <button key={g} onClick={() => update('gender', g)} style={{ flex: 1, padding: '8px 0', borderRadius: 8, border: form.gender === g ? '1.5px solid #8B5CF6' : '1px solid #1E2740', background: form.gender === g ? 'rgba(139,92,246,0.1)' : '#0F1420', color: form.gender === g ? '#E2E8F0' : '#64748B', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', textTransform: 'capitalize' }}>{g}</button>
                   ))}
                 </div>

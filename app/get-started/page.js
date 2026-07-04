@@ -18,7 +18,7 @@ export default function GetStarted() {
   const [hasAccount, setHasAccount] = useState(false);
 
   // Registration
-  const [form, setForm] = useState({ alias: '', email: '', password: '', age: '', gender: '', seekingGender: '', connectionType: '' });
+  const [form, setForm] = useState({ alias: '', email: '', password: '', age: '', connectionType: '' });
   const update = (k, v) => setForm({ ...form, [k]: v });
 
   // Plan
@@ -66,15 +66,13 @@ export default function GetStarted() {
     if (!form.email) missing.push('email');
     if (!form.password) missing.push('password');
     if (!form.age) missing.push('age');
-    if (!form.gender) missing.push('gender');
-    if (!form.seekingGender) missing.push('looking for');
     if (!form.connectionType) missing.push('connection type');
     if (missing.length) return setError('Missing: ' + missing.join(', '));
     if (form.password.length < 8) return setError('Password must be at least 8 characters');
     if (parseInt(form.age) < 18) return setError('You must be 18 or older');
     setLoading(true);
     try {
-      const res = await apiFetch('/api/auth/register', { method: 'POST', body: JSON.stringify({ email: form.email, password: form.password, alias: form.alias, age: parseInt(form.age), gender: form.gender, seekingGender: form.seekingGender, connectionType: form.connectionType }) });
+      const res = await apiFetch('/api/auth/register', { method: 'POST', body: JSON.stringify({ email: form.email, password: form.password, alias: form.alias, age: parseInt(form.age), connectionType: form.connectionType }) });
       setToken(res.token); setUser(res.user);
       sessionStorage.setItem('riff_token', res.token);
       sessionStorage.setItem('riff_user', JSON.stringify(res.user));
@@ -213,10 +211,18 @@ export default function GetStarted() {
             <input style={inputStyle} placeholder="Password (8+ characters)" type="password" value={form.password} onChange={e => update('password', e.target.value)} />
             <input style={inputStyle} placeholder="Age" type="number" value={form.age} onChange={e => update('age', e.target.value)} />
             <div style={{ marginBottom: 10 }}>
-              <label style={labelStyle}>I am</label>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, marginBottom: 12 }}>
-                {['Male', 'Female', 'Non-binary', 'No Preference'].map(g => (
-                  <button key={g} onClick={() => update('gender', g)} style={{ padding: '10px 4px', borderRadius: 10, border: form.gender === g ? '1.5px solid #8B5CF6' : '1px solid #1E2740', background: form.gender === g ? 'rgba(139,92,246,0.1)' : '#0F1420', color: form.gender === g ? '#E2E8F0' : '#64748B', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'center', lineHeight: 1.3 }}>{g}</button>
+              <label style={labelStyle}>What do you want from Riff?</label>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                {[
+                  { id: 'deep', icon: '◎', label: 'Meet a like-minded person', color: '#22D3EE' },
+                  { id: 'circle', icon: '◍', label: 'Develop a new friends group', color: '#84CC16' },
+                  { id: 'bot', icon: '✦', label: 'Chat with an AI companion', color: '#EC4899' },
+                  { id: 'all', icon: '◎◍✦', label: 'All of the above', color: '#8B5CF6' },
+                ].map(c => (
+                  <button key={c.id} onClick={() => update('connectionType', c.id)} style={{ padding: '16px 12px', borderRadius: 14, border: form.connectionType === c.id ? '2px solid ' + c.color : '1px solid #1E2740', background: form.connectionType === c.id ? c.color + '15' : '#0F1420', color: form.connectionType === c.id ? '#E2E8F0' : '#94A3B8', fontSize: 13, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'center', lineHeight: 1.4, transition: 'all 0.2s' }}>
+                    <div style={{ fontSize: 20, marginBottom: 6 }}>{c.icon}</div>
+                    {c.label}
+                  </button>
                 ))}
               </div>
               <label style={labelStyle}>Looking for</label>

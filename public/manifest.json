@@ -1,0 +1,13 @@
+{
+  "name": "Riff — Meet Like-Minded People",
+  "short_name": "Riff",
+  "description": "Connect through questions, voice, and trust. Meet new people, find mentors, and build real friendships.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0E18",
+  "theme_color": "#0A0E18",
+  "icons": [
+    { "src": "/logo.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

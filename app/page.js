@@ -4,24 +4,24 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 const STAGES = [
-  { num: '01', title: 'Answer questions', desc: '25 questions across values, emotions, humor, and dealbreakers. No swiping — just honest answers.', icon: '💭', color: '#8B5CF6' },
+  { num: '01', title: 'Answer questions', desc: '25 questions across values, goals, perspectives, and communication style. No scrolling profiles — just honest answers.', icon: '💭', color: '#8B5CF6' },
   { num: '02', title: 'Get matched', desc: 'Our algorithm finds people who think like you — not look like you. 72%+ compatibility required.', icon: '✦', color: '#EC4899' },
-  { num: '03', title: 'Riff in text', desc: 'Message your match. Ask anything. No photos, no names — just pure personality.', icon: '💬', color: '#F59E0B' },
+  { num: '03', title: 'Riff in text', desc: 'Message your match. Ask anything. No photos, no names — just pure personality and shared ideas.', icon: '💬', color: '#F59E0B' },
   { num: '04', title: 'Unlock voice', desc: 'Hear each other for the first time. Rate the connection. If both score 4/5+, the reveal unlocks.', icon: '🎙', color: '#22D3EE' },
-  { num: '05', title: 'The reveal', desc: 'Both photos appear at the exact same moment. No power imbalance. Then choose: continue or let it fade.', icon: '📸', color: '#84CC16' },
+  { num: '05', title: 'The reveal', desc: 'Both photos appear at the exact same moment. No power imbalance. Then choose: continue building or let it fade.', icon: '📸', color: '#84CC16' },
 ];
 
 const FEATURES = [
   {
     mode: 'Deep Connection', icon: '◎', color: '#22D3EE',
     tagline: 'One person. Full depth.',
-    desc: 'Progress through 5 stages with a single match — text, voice, reveal, life stories, full connection. Designed for romance, mentorship, or a profound friendship.',
+    desc: 'Progress through 5 stages with a single match — text, voice, reveal, life stories, full connection. Designed for mentorship, collaboration, or a meaningful 1:1 connection that helps you grow.',
     highlights: ['Voice scoring system', 'Simultaneous photo reveal', 'Life chapters exchange', 'Full video unlock'],
   },
   {
     mode: 'Friend Circle', icon: '◍', color: '#84CC16',
     tagline: 'Four people. Real friendships.',
-    desc: 'Matched with 4 compatible people simultaneously. Group question rounds reveal personalities before faces. Built for finding your tribe.',
+    desc: 'Matched with 4 compatible people simultaneously. Group question rounds reveal personalities before faces. Built for finding your tribe and building lasting friendships.',
     highlights: ['Group question rounds', '1:1 deep dives within circle', 'Mosaic photo reveal', 'Group chat + meetup calendar'],
   },
 ];
@@ -29,7 +29,7 @@ const FEATURES = [
 const SAFETY = [
   { icon: '🛡', title: 'ID verified', desc: 'Government ID + live selfie match. Every user is confirmed real.' },
   { icon: '🟢', title: 'Trust score', desc: 'Green, yellow, or red indicator. Cross-references claims against verified data.' },
-  { icon: '🤖', title: 'Practice mode', desc: 'AI companions keep you engaged while we find your real match. Fully transparent.' },
+  { icon: '🤖', title: 'AI companions', desc: 'AI-powered companions keep you engaged while we find your real connections. Fully transparent.' },
   { icon: '⚑', title: 'Real-time safety', desc: '7-layer detection system monitors for harmful behaviour and protects every user.' },
   { icon: '🔐', title: 'Encrypted', desc: 'Photos and voice messages encrypted end-to-end. We can\'t see them. Nobody can.' },
   { icon: '👁', title: 'Liveness detection', desc: 'Photos require in-app capture with blink and head-turn verification. No catfishing.' },
@@ -54,13 +54,13 @@ const PRICING = [
 ];
 
 const FAQS = [
-  { q: 'How is Riff different from dating apps?', a: 'Dating apps show you a photo and ask you to judge in seconds. Riff shows you nothing — you connect through questions, text, and voice before you ever see a face. By the time the photo reveal happens, you already know if you click. It\'s connection first, appearance second.' },
-  { q: 'Is Riff only for dating?', a: 'No. Riff has two modes: Deep Connection (for romance, mentorship, or profound 1:1 friendship) and Friend Circle (for finding a group of 4 real friends). Many users use both simultaneously.' },
-  { q: 'What\'s Practice Mode?', a: 'While we search for your real match, you\'ll connect with an AI companion that helps you explore the app and discover what matters to you in a conversation. It\'s fully transparent — you\'ll always know it\'s practice, and it naturally fades when your real match arrives.' },
-  { q: 'How do you prevent catfishing?', a: 'Every user submits a government ID and takes a live selfie with liveness detection (blink and head-turn prompts). Photos in the app require in-app capture and pass reverse image search. Your Trust Score is visible to your matches.' },
-  { q: 'What if I don\'t like my match after the photo reveal?', a: 'Both people independently choose \'Continue\' or \'Let it fade.\' If either person chooses to fade, the connection closes gracefully. Neither person knows who made the choice. No blame, no awkwardness.' },
+  { q: 'How is Riff different from other social apps?', a: 'Most social apps show you a profile and ask you to judge in seconds. Riff shows you nothing — you connect through questions, text, and voice before you ever see a face. By the time the photo reveal happens, you already know if you click. It\'s connection first, appearance second.' },
+  { q: 'What can I use Riff for?', a: 'Riff has two modes: Deep Connection (for finding a mentor, collaborator, or meaningful 1:1 connection) and Friend Circle (for finding a group of 4 like-minded people). Many users use both simultaneously to build a network of genuine connections.' },
+  { q: 'What are AI Companions?', a: 'While we search for your real connections, you can chat with AI companions that help you explore the app and discover what matters to you in a conversation. It\'s fully transparent — you\'ll always know it\'s AI, and it naturally fades when your real connections arrive.' },
+  { q: 'How do you prevent catfishing?', a: 'Every user submits a government ID and takes a live selfie with liveness detection (blink and head-turn prompts). Photos in the app require in-app capture and pass reverse image search. Your Trust Score is visible to your connections.' },
+  { q: 'What if I don\'t connect with my match after the reveal?', a: 'Both people independently choose \'Continue\' or \'Let it fade.\' If either person chooses to fade, the connection closes gracefully. Neither person knows who made the choice. No blame, no awkwardness.' },
   { q: 'Is my data safe?', a: 'Photos and voice messages are encrypted end-to-end. Your verified identity is never shared with other users — they only see your Trust Score colour. We comply with GDPR, California privacy laws, and the EU AI Act.' },
-  { q: 'How much does it cost?', a: 'Single plan starts at £3.99 for 6 months (then £2.99/mo). Explorer (£5.99/mo) adds more connections and priority matching. Inner Circle (£11.99/mo) unlocks everything. Try the bot companion free before subscribing.' },
+  { q: 'How much does it cost?', a: 'Single plan starts at £3.99 for 6 months (then £2.99/mo). Explorer (£5.99/mo) adds more connections and priority matching. Inner Circle (£11.99/mo) unlocks everything. Try the AI companion free before subscribing.' },
 ];
 
 function scrollTo(id) {
@@ -120,7 +120,7 @@ export default function Home() {
                 Understand someone<br /><span className="gradient-text">before you see them.</span>
               </h1>
               <p className="section-sub" style={{ marginBottom: 32 }}>
-                Riff matches you through questions, voice, and trust — not photos and swipes. Find deep connections and real friendships with people who think like you.
+                Riff connects you through questions, voice, and trust — not photos and profiles. Find mentors, collaborators, and real friendships with people who help you grow.
               </p>
               <div className="hero-btns" style={{ display: 'flex', gap: 12 }}>
                 <a href="/try-bot" className="btn-primary" style={{ display: "inline-block", textDecoration: "none" }}>Try Riff Demo Free</a>
@@ -149,13 +149,13 @@ export default function Home() {
                       <span style={{ fontSize: 9, color: 'var(--text-dim)', background: '#1a1f30', padding: '3px 10px', borderRadius: 10 }}>A new riff found</span>
                     </div>
                     <div style={{ alignSelf: 'flex-start', background: 'var(--bg-surface)', padding: '8px 12px', borderRadius: '12px 12px 12px 4px', fontSize: 11, lineHeight: 1.5, maxWidth: '85%', color: '#CBD5E1' }}>
-                      hey. your answer about what matters in a deep connection really stayed with me. what made you choose that one?
+                      hey. your answer about what drives you forward really stayed with me. what made you choose that one?
                     </div>
                     <div style={{ alignSelf: 'flex-end', background: 'var(--cyan)', padding: '8px 12px', borderRadius: '12px 12px 4px 12px', fontSize: 11, lineHeight: 1.5, maxWidth: '85%', color: '#000' }}>
-                      I think because when someone just gets you without explanation... that&apos;s everything.
+                      I think because when someone just gets your vision without explanation... that&apos;s everything.
                     </div>
                     <div style={{ alignSelf: 'flex-start', background: 'var(--bg-surface)', padding: '8px 12px', borderRadius: '12px 12px 12px 4px', fontSize: 11, lineHeight: 1.5, maxWidth: '85%', color: '#CBD5E1' }}>
-                      hmm. yeah. there&apos;s a word for that feeling — saudade. what you described feels adjacent to that somehow.
+                      hmm. yeah. there&apos;s something powerful about meeting someone who sees the same path you do.
                     </div>
                     <div style={{ alignSelf: 'flex-start', background: 'var(--bg-surface)', padding: '8px 12px', borderRadius: '12px 12px 12px 4px', fontSize: 10, lineHeight: 1.5, color: 'var(--text-secondary)' }}>
                       sorry that was a lot for a second message lol
@@ -177,7 +177,7 @@ export default function Home() {
         <div className="section">
           <div className="section-label" style={{ color: 'var(--purple)' }}>How Riff works</div>
           <h2 className="section-title">Five stages to a real connection</h2>
-          <p className="section-sub" style={{ marginBottom: 48 }}>No swiping. No judging photos. You earn the reveal through genuine conversation.</p>
+          <p className="section-sub" style={{ marginBottom: 48 }}>No scrolling profiles. No judging photos. You earn the reveal through genuine conversation.</p>
           <div>
             {STAGES.map((s, i) => (
               <div key={i} className="stage-row" style={{ display: 'flex', gap: 24, alignItems: 'flex-start', padding: '28px 0', borderTop: i === 0 ? 'none' : '1px solid var(--border)' }}>
@@ -203,7 +203,7 @@ export default function Home() {
         <div className="section">
           <div className="section-label" style={{ color: 'var(--pink)' }}>Two ways to connect</div>
           <h2 className="section-title">Deep bonds or friend groups. You choose.</h2>
-          <p className="section-sub" style={{ marginBottom: 48 }}>Run both modes simultaneously. Find deep & meaningful connections and friendship in the same app.</p>
+          <p className="section-sub" style={{ marginBottom: 48 }}>Run both modes simultaneously. Find meaningful connections and build real friendships in the same app.</p>
           <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {FEATURES.map((f, i) => (
               <div key={i} className="glass" style={{ padding: 28, position: 'relative', overflow: 'hidden' }}>
@@ -244,19 +244,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ PRACTICE MODE ═══ */}
+      {/* ═══ AI COMPANIONS ═══ */}
       <section style={{ background: 'linear-gradient(180deg, var(--bg-primary) 0%, #0a0520 50%, var(--bg-primary) 100%)' }}>
         <div className="section" style={{ textAlign: 'center' }}>
           <div style={{ maxWidth: 640, margin: '0 auto' }}>
-            <div className="section-label" style={{ color: 'var(--amber)' }}>Practice mode</div>
+            <div className="section-label" style={{ color: 'var(--amber)' }}>AI Companions</div>
             <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Never alone while you wait</h2>
             <p style={{ fontSize: 17, color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: 32 }}>
-              While we search for your perfect match, you&apos;ll riff with an AI companion to explore the app and discover what matters to you. Fully transparent — you&apos;ll always know — and it fades naturally when the real thing arrives.
+              While we search for your ideal connections, you can chat with AI companions to explore the app and discover what matters to you. Fully transparent — you&apos;ll always know — and they fade naturally when the real connections arrive.
             </p>
             <div style={{ display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
               {[
-                { label: '10 unique personas', sub: 'Diverse personalities, backgrounds, and communication styles' },
-                { label: 'Psychology-informed', sub: 'Responses grounded in conversation research and human behaviour' },
+                { label: '5 unique personas', sub: 'Diverse personalities, backgrounds, and communication styles' },
+                { label: 'Voice responses', sub: 'Hear your AI companion speak — natural, expressive voices' },
                 { label: 'Always safe', sub: '7-layer safety system detects and handles harmful interactions' },
               ].map((p, i) => (
                 <div key={i} className="glass" style={{ padding: '20px 24px', flex: '1 1 180px', maxWidth: 220, textAlign: 'left' }}>
@@ -292,7 +292,6 @@ export default function Home() {
                   <div style={{ fontSize: 14, fontWeight: 600, color: p.color, marginBottom: 4 }}>{p.tier}</div>
                   <div style={{ fontSize: 12, color: 'var(--text-dim)', marginBottom: 16 }}>{p.desc}</div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
-                    {/* Price display */}
                   <div>
                         {p.isIntro && billing === 'yearly' ? (
                           <>
@@ -361,7 +360,7 @@ export default function Home() {
             <Image src="/logo.png" alt="Riff" width={56} height={56} style={{ borderRadius: 14, marginBottom: 20 }} />
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, fontWeight: 700, marginBottom: 12, letterSpacing: '-0.5px' }}>Ready to riff?</h2>
             <p style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 28 }}>
-              Start from £2.99/month. Answer questions. Discover someone real.
+              Start from £2.99/month. Answer questions. Discover someone who helps you grow.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <button className="btn-primary">🍎 App Store</button>

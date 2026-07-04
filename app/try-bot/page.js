@@ -305,8 +305,8 @@ function GroupChatStage({ onComplete }) {
 
   const autoMessages = [
     { delay: 800, sender: 'Sage', color: '#22D3EE', text: 'hey everyone! so excited this circle formed. i already feel like we are going to get along.' },
-    { delay: 3000, sender: 'Echo', color: '#8B5CF6', text: 'same!! okay who wants to break the ice? should we play a game?' },
-    { delay: 5000, sender: 'Luna', color: '#EC4899', text: 'yes! someone hit the games button. i am competitive, fair warning.' },
+    { delay: 3000, sender: 'Luna', color: '#EC4899', text: 'agreed! i have a good feeling about this group. someone say something interesting so i can judge you all properly.' },
+    { delay: 5500, sender: 'Echo', color: '#8B5CF6', text: 'haha luna is already being luna. okay who wants to break the ice — chat or games?' },
   ];
 
   useEffect(() => {
@@ -336,12 +336,33 @@ function GroupChatStage({ onComplete }) {
       return;
     }
 
-    const replies = [
-      { sender: 'Sage', color: '#22D3EE', texts: ['haha i love that', 'okay you are definitely my kind of person', 'wait that is so interesting'] },
-      { sender: 'Echo', color: '#8B5CF6', texts: ['yesss exactly', 'okay tell me more about that', 'i was literally thinking the same thing'] },
-    ];
-    const r = replies[Math.floor(Math.random() * replies.length)];
-    setTimeout(() => setMessages(p => [...p, { id: Date.now()+2, text: r.texts[Math.floor(Math.random() * r.texts.length)], sender: r.sender, color: r.color }]), 1500 + Math.random() * 1000);
+    // Get AI response from Luna, then add a short reaction from another member
+    setTimeout(async function() {
+      var botText = null;
+      try {
+        var res = await fetch(API + '/api/bot-connection/demo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text, persona: 'Luna', conversationHistory: [] }),
+        });
+        if (res.ok) {
+          var d = await res.json();
+          botText = d.response || d.text;
+        }
+      } catch (e) {}
+      if (!botText) botText = LOCAL_RESPONSES[Math.floor(Math.random() * LOCAL_RESPONSES.length)];
+      setMessages(function(p) { return [...p, { id: Date.now()+2, text: botText, sender: 'Luna', color: '#EC4899' }]; });
+
+      // Add a short reaction from another member after Luna
+      var reactions = [
+        { sender: 'Sage', color: '#22D3EE', texts: ['^ this. so much this', 'luna always says it better than me', 'okay wait i have thoughts on this too'] },
+        { sender: 'Echo', color: '#8B5CF6', texts: ['ooh interesting point luna', 'i was about to say the same thing honestly', 'love this conversation already'] },
+      ];
+      var r = reactions[Math.floor(Math.random() * reactions.length)];
+      setTimeout(function() {
+        setMessages(function(p) { return [...p, { id: Date.now()+3, text: r.texts[Math.floor(Math.random() * r.texts.length)], sender: r.sender, color: r.color }]; });
+      }, 2000 + Math.random() * 1500);
+    }, 1500 + Math.random() * 1000);
   }
 
   function startGame(id) { setActiveGame(id); setShowGames(false); setGameRound(0); setGameChosen(null); setGameRevealed(false); setGameTimer(5); }
@@ -806,7 +827,7 @@ export default function TryBot() {
   const [stage, setStage] = useState('verify');
   const [mode, setMode] = useState(null);
   const [persona, setPersona] = useState('Luna');
-  function handleModeSelect(m) { setMode(m); setStage('persona'); }
+  function handleModeSelect(m) { setMode(m); setStage(m === 'deep' ? 'persona' : 'questions'); }
   function handlePersonaSelect(p) { setPersona(p); setStage('questions'); }
   function handleQuestionsComplete() { setStage('matchfound'); }
   function handleMatchComplete() { setStage(mode === 'deep' ? 'chat' : 'groupchat'); }

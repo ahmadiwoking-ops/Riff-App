@@ -225,13 +225,7 @@ export default function GetStarted() {
                   </button>
                 ))}
               </div>
-              <label style={labelStyle}>Looking for</label>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6 }}>
-                {['Male', 'Female', 'Non-binary', 'No Preference', 'A Friends Circle'].map(g => (
-                  <button key={g} onClick={() => update('seekingGender', g)} style={{ padding: '10px 4px', borderRadius: 10, border: form.seekingGender === g ? '1.5px solid #EC4899' : '1px solid #1E2740', background: form.seekingGender === g ? 'rgba(236,72,153,0.1)' : '#0F1420', color: form.seekingGender === g ? '#E2E8F0' : '#64748B', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'center', lineHeight: 1.3 }}>{g}</button>
-                ))}
-              </div>
-            </div>
+                          </div>
             <div style={{ marginBottom: 16 }}>
               <label style={labelStyle}>Connection type</label>
               <div style={{ display: 'flex', gap: 8 }}>

@@ -3,6 +3,14 @@ import { useState, useRef, useEffect } from 'react';
 
 const API = 'https://web-production-31dae.up.railway.app';
 
+const DEMO_PERSONAS = [
+  { alias: 'Luna', age: 27, flag: '🇵🇹', color: '#EC4899', icon: '📚', vibe: 'The Gentle Philosopher', desc: 'Bookshop owner in Lisbon. Warm, curious, poetic.' },
+  { alias: 'Zara', age: 36, flag: '🇬🇧', color: '#0EA5E9', icon: '🚀', vibe: 'The Startup CEO', desc: 'Serial entrepreneur. Sharp, strategic, mentors founders.' },
+  { alias: 'Naia', age: 31, flag: '🇺🇸', color: '#A855F7', icon: '🧠', vibe: 'The Mind Guide', desc: 'Clinical psychologist. Warm, insightful, validating.' },
+  { alias: 'Oscar', age: 40, flag: '🇲🇽', color: '#22C55E', icon: '⚽', vibe: 'The Football Legend', desc: 'Retired La Liga pro. Calm, wise, full of stories.' },
+  { alias: 'Maya', age: 28, flag: '🇺🇸', color: '#6366F1', icon: '⚖️', vibe: 'The Rights Champion', desc: 'Human rights lawyer. Sharp, principled, brave.' },
+];
+
 const CIRCLE_MEMBERS = [
   { name: 'Sage', color: '#22D3EE', initial: 'S' },
   { name: 'Atlas', color: '#84CC16', initial: 'A' },
@@ -169,7 +177,7 @@ function QuestionsStage({ mode, onComplete }) {
 }
 
 // ═══ MATCH FOUND ═══
-function MatchFoundStage({ mode, onComplete }) {
+function MatchFoundStage({ mode, persona, onComplete }) {
   const [step, setStep] = useState(0);
   useEffect(() => {
     const t1 = setTimeout(() => setStep(1), 1500);
@@ -188,7 +196,7 @@ function MatchFoundStage({ mode, onComplete }) {
         {step === 2 && (<>
           <div style={{ width: 72, height: 72, borderRadius: 18, background: 'rgba(139,92,246,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, animation: 'fadeIn 0.8s ease' }}><span style={{ fontSize: 28, fontWeight: 700, color: '#8B5CF6' }}>L</span></div>
           <div style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 700, color: '#E2E8F0', marginBottom: 4 }}>Match found</div>
-          <div style={{ fontSize: 15, color: '#22D3EE', marginBottom: 4 }}>Luna, 27, Lisbon</div>
+          <div style={{ fontSize: 15, color: '#22D3EE', marginBottom: 4 }}>{persona || 'Luna'}</div>
           <div style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 10, background: 'rgba(34,211,238,0.1)', border: '1px solid rgba(34,211,238,0.2)', marginBottom: 8 }}>
             <span style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 800, color: '#22D3EE' }}>{score}%</span><span style={{ fontSize: 13, color: '#94A3B8', marginLeft: 6 }}>compatible</span>
           </div>
@@ -221,7 +229,7 @@ function MatchFoundStage({ mode, onComplete }) {
 }
 
 // ═══ DEEP CONNECTION CHAT ═══
-function ChatStage({ onComplete }) {
+  function ChatStage({ persona, onComplete }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
@@ -232,7 +240,11 @@ function ChatStage({ onComplete }) {
 
   useEffect(() => {
     setTimeout(() => {
-      const intro = "hey. i was hoping you would message. we matched really high on the emotional honesty questions, which... yeah, that is rare. tell me something about yourself?";
+      const intro = persona === 'Zara' ? "hey — just stepped out of a meeting. we matched really high on the ambition and values questions. tell me what you are working on?"
+        : persona === 'Naia' ? "hey there. we matched on emotional depth and self-awareness, which is beautiful. what is on your mind?"
+        : persona === 'Oscar' ? "hola! we matched high on teamwork and discipline. those are values i respect. tell me about yourself?"
+        : persona === 'Maya' ? "hey. we matched on principles and honesty — that is rare. tell me something about what drives you?"
+        : "hey. i was hoping you would message. we matched really high on the emotional honesty questions, which... yeah, that is rare. tell me something about yourself?";
       setMessages([{ id: 0, text: intro, sender: 'bot' }]);
       setHistory([{ role: 'assistant', content: intro }]);
     }, 800);
@@ -250,7 +262,7 @@ function ChatStage({ onComplete }) {
     setTyping(true);
     const nh = [...history, { role: 'user', content: text }]; setHistory(nh);
     let botText;
-    try { const res = await fetch(API + '/api/bot/demo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ connectionId: 'web-demo', message: text, conversationHistory: nh.slice(-6) }) }); if (res.ok) { const d = await res.json(); botText = d.response || d.text; } } catch {}
+    try { const res = await fetch(API + '/api/bot-connection/demo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ connectionId: 'web-demo', message: text, conversationHistory: nh.slice(-6), persona: persona }) }); if (res.ok) { const d = await res.json(); botText = d.response || d.text; } } catch {}
     if (!botText) botText = LOCAL_RESPONSES[Math.floor(Math.random() * LOCAL_RESPONSES.length)];
     setTimeout(() => { setTyping(false); setMessages(p => [...p, { id: Date.now()+1, text: botText, sender: 'bot' }]); setHistory(p => [...p, { role: 'assistant', content: botText }]); }, 1000 + Math.random() * 1500);
   }
@@ -266,7 +278,7 @@ function ChatStage({ onComplete }) {
             <div style={{ maxWidth: '75%', padding: '10px 14px', borderRadius: 18, background: m.sender === 'user' ? '#22D3EE' : '#151B2B', borderBottomRightRadius: m.sender === 'user' ? 4 : 18, borderBottomLeftRadius: m.sender === 'bot' ? 4 : 18, color: m.sender === 'user' ? '#000' : '#E2E8F0', fontSize: 14, lineHeight: 1.6 }}>{m.text}</div>
           </div>
         ))}
-        {typing && <div style={{ display: 'flex' }}><div style={{ padding: '10px 14px', borderRadius: 18, borderBottomLeftRadius: 4, background: '#151B2B', fontSize: 13, color: '#94A3B8' }}>Luna is typing...</div></div>}
+        {typing && <div style={{ display: 'flex' }}><div style={{ padding: '10px 14px', borderRadius: 18, borderBottomLeftRadius: 4, background: '#151B2B', fontSize: 13, color: '#94A3B8' }}>{persona || 'Luna'} is typing...</div></div>}
       </div>
       <div style={{ padding: '12px 16px', paddingBottom: 'calc(12px + env(safe-area-inset-bottom))', borderTop: '1px solid #1E2740', display: 'flex', gap: 8, flexShrink: 0 }}>
         <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()} placeholder="Type a message..." style={{ flex: 1, height: 42, borderRadius: 12, border: '1px solid #1E2740', background: '#151B2B', padding: '0 14px', fontSize: 14, color: '#E2E8F0', outline: 'none', fontFamily: 'inherit' }} />
@@ -765,16 +777,43 @@ function FinalStage({ mode }) {
 }
 
 // ═══ MAIN ═══
+function PersonaSelectStage({ onSelect }) {
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 24, overflowY: 'auto' }}>
+      <div style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 700, color: '#E2E8F0', marginBottom: 6, textAlign: 'center' }}>Choose your companion</div>
+      <p style={{ fontSize: 13, color: '#94A3B8', marginBottom: 24, textAlign: 'center' }}>Each persona has a unique background and expertise</p>
+      {DEMO_PERSONAS.map(function(p, i) {
+        return (
+          <button key={i} onClick={function() { onSelect(p.alias); }} style={{ width: '100%', maxWidth: 340, padding: 18, borderRadius: 16, marginBottom: 10, background: '#0F1420', border: '1.5px solid rgba(255,255,255,0.06)', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', display: 'flex', gap: 14, alignItems: 'center', transition: 'border-color 0.2s' }}
+            onMouseOver={function(e) { e.currentTarget.style.borderColor = p.color; }} onMouseOut={function(e) { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; }}>
+            <div style={{ width: 48, height: 48, borderRadius: 14, background: p.color + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, flexShrink: 0 }}>{p.icon}</div>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
+                <span style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 700, color: p.color }}>{p.alias}</span>
+                <span style={{ fontSize: 12, color: '#64748B' }}>{p.flag} {p.age}</span>
+              </div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: '#94A3B8', marginBottom: 2 }}>{p.vibe}</div>
+              <div style={{ fontSize: 11, color: '#64748B' }}>{p.desc}</div>
+            </div>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function TryBot() {
   const [stage, setStage] = useState('verify');
   const [mode, setMode] = useState(null);
-  function handleModeSelect(m) { setMode(m); setStage('questions'); }
+  const [persona, setPersona] = useState('Luna');
+  function handleModeSelect(m) { setMode(m); setStage('persona'); }
+  function handlePersonaSelect(p) { setPersona(p); setStage('questions'); }
   function handleQuestionsComplete() { setStage('matchfound'); }
   function handleMatchComplete() { setStage(mode === 'deep' ? 'chat' : 'groupchat'); }
 
   const stageOrder = mode === 'deep'
-    ? ['verify','mode','questions','matchfound','chat','voice','reveal','video','final']
-    : ['verify','mode','questions','matchfound','groupchat','voice','reveal','video','final'];
+    ? ['verify','mode','persona','questions','matchfound','chat','voice','reveal','video','final']
+    : ['verify','mode','persona','questions','matchfound','groupchat','voice','reveal','video','final'];
   const currentIdx = stageOrder.indexOf(stage);
 
   return (
@@ -792,9 +831,10 @@ export default function TryBot() {
 
       {stage === 'verify' && <VerificationStage onComplete={() => setStage('mode')} />}
       {stage === 'mode' && <ModeSelectStage onSelect={handleModeSelect} />}
+      {stage === 'persona' && <PersonaSelectStage onSelect={handlePersonaSelect} />}
       {stage === 'questions' && <QuestionsStage mode={mode} onComplete={handleQuestionsComplete} />}
-      {stage === 'matchfound' && <MatchFoundStage mode={mode} onComplete={handleMatchComplete} />}
-      {stage === 'chat' && <ChatStage onComplete={() => setStage('voice')} />}
+      {stage === 'matchfound' && <MatchFoundStage mode={mode} persona={persona} onComplete={handleMatchComplete} />}
+      {stage === 'chat' && <ChatStage persona={persona} onComplete={() => setStage('voice')} />}
       {stage === 'groupchat' && <GroupChatStage onComplete={() => setStage('voice')} />}
       {stage === 'voice' && <VoiceStage mode={mode} onComplete={() => setStage('reveal')} />}
       {stage === 'reveal' && <RevealStage mode={mode} onContinue={() => setStage('video')} onFade={() => setStage('fade')} />}

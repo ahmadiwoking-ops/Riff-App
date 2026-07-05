@@ -17,26 +17,19 @@ const CIRCLE_MEMBERS = [
   { name: 'Echo', color: '#8B5CF6', initial: 'E' },
 ];
 
-const DEEP_QUESTIONS = [
-  { q: 'What draws you to someone most?', opts: ['Their mind', 'Their energy', 'Their kindness', 'Their humour'] },
-  { q: 'How do you show someone you care?', opts: ['Words and messages', 'Quality time together', 'Small thoughtful gestures', 'Being there when it matters'] },
-  { q: 'What does vulnerability look like for you?', opts: ['Sharing fears and doubts', 'Asking for help', 'Saying how I feel first', 'Letting someone see me at my worst'] },
-  { q: 'Your ideal deep conversation happens...', opts: ['Late at night, just us', 'Walking somewhere with no plan', 'Over coffee, face to face', 'In voice notes back and forth'] },
-  { q: 'When someone hurts you, you tend to...', opts: ['Go quiet and process alone', 'Talk it through immediately', 'Write down how I feel first', 'Need time, then address it directly'] },
-  { q: 'What is non-negotiable for you?', opts: ['Emotional honesty', 'Consistent effort', 'Respecting boundaries', 'Intellectual curiosity'] },
-  { q: 'What kind of connection are you looking for?', opts: ['Someone who challenges me to grow', 'Someone who feels like home', 'Someone who matches my energy', 'Someone who sees the real me'] },
+const DEMO_QUESTIONS = [
+  { layer: '🎯 Goals', question: 'Which of these would change your life most right now?', type: 'choice',
+    options: ['A mentor who has been there', 'A partner to build with', 'Friends who push me forward', 'Someone to talk things through with'] },
+  { layer: '💡 Interests', question: 'Pick the 3 topics you are most drawn to', type: 'multi', max: 3,
+    options: ['Business & entrepreneurship', 'Technology & AI', 'Psychology & mindset', 'Health & fitness', 'Creative arts', 'Finance & investing', 'Education & teaching', 'Social impact', 'Science & research', 'Fashion & design'] },
+  { layer: '💡 Interests', question: 'What could you confidently teach someone else?', type: 'text', placeholder: 'Your expertise or skill...' },
+  { layer: '💬 Character', question: 'Which word best describes you?', type: 'choice',
+    options: ['Ambitious', 'Thoughtful', 'Creative', 'Loyal', 'Curious', 'Resilient'] },
+  { layer: '🌍 Worldview', question: 'How do you feel about how the world is changing?', type: 'choice',
+    options: ['Optimistic — technology will solve most problems', 'Cautious — change is good but too fast', 'Concerned — we are losing important things', 'Excited — the best is still ahead'] },
+  { layer: '✨ Personality', question: 'What is your star sign?', type: 'choice',
+    options: ['Aries ♈', 'Taurus ♉', 'Gemini ♊', 'Cancer ♋', 'Leo ♌', 'Virgo ♍', 'Libra ♎', 'Scorpio ♏', 'Sagittarius ♐', 'Capricorn ♑', 'Aquarius ♒', 'Pisces ♓'] },
 ];
-
-const CIRCLE_QUESTIONS = [
-  { q: 'In a group, you are usually the one who...', opts: ['Makes everyone laugh', 'Plans the activities', 'Checks in on everyone', 'Goes with the flow'] },
-  { q: 'Your ideal group hangout is...', opts: ['Game night at someone\'s place', 'Trying a new restaurant together', 'Outdoor adventure', 'Chill vibes, music, good chat'] },
-  { q: 'What makes you click with new people?', opts: ['Shared sense of humour', 'Similar values', 'Complementary energy', 'Common interests'] },
-  { q: 'When a friend is going through it, you...', opts: ['Show up with food and company', 'Send a long heartfelt message', 'Give them space but check in', 'Try to make them laugh'] },
-  { q: 'The group chat energy you love most is...', opts: ['Memes and chaos', 'Deep 2am conversations', 'Planning the next hangout', 'Sharing random life updates'] },
-  { q: 'What role do you want in a friend group?', opts: ['The one everyone trusts', 'The adventurous one', 'The connector who brings people together', 'The creative one with niche interests'] },
-  { q: 'Friendship dealbreaker?', opts: ['Flakiness and cancelled plans', 'Gossip behind backs', 'Only reaching out when they need something', 'Never being vulnerable'] },
-];
-
 const WYR_ROUNDS = [
   { a: 'Always know what people think of you', b: 'Never care what anyone thinks' },
   { a: 'Have one deep friendship that lasts forever', b: 'Have many good friendships that come and go' },
@@ -122,56 +115,94 @@ function ModeSelectStage({ onSelect }) {
 
 // ═══ QUESTIONS ═══
 function QuestionsStage({ mode, onComplete }) {
-  const questions = mode === 'deep' ? DEEP_QUESTIONS : CIRCLE_QUESTIONS;
+  const questions = DEMO_QUESTIONS;
   const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState([]);
-  const [selected, setSelected] = useState(null);
-  const [animating, setAnimating] = useState(false);
-  const color = mode === 'deep' ? '#22D3EE' : '#84CC16';
-  const label = mode === 'deep' ? 'COMPATIBILITY QUESTIONS' : 'CIRCLE MATCHING';
-
-  function pick(idx) {
-    if (animating) return;
-    setSelected(idx);
-    setAnimating(true);
-    const newAnswers = [...answers, idx];
-    setTimeout(() => {
-      setAnswers(newAnswers);
-      if (current + 1 >= questions.length) {
-        onComplete(newAnswers);
-      } else {
-        setCurrent(c => c + 1);
-        setSelected(null);
-        setAnimating(false);
-      }
-    }, 600);
-  }
-
+  const [answers, setAnswers] = useState({});
+  const [textVal, setTextVal] = useState('');
   const q = questions[current];
   const progress = ((current) / questions.length) * 100;
 
-  return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: 20 }}>
-      <div style={{ textAlign: 'center', marginBottom: 6, flexShrink: 0 }}>
-        <span style={{ fontSize: 11, fontWeight: 600, color }}>{label}</span>
-      </div>
-      <div style={{ width: '100%', height: 4, borderRadius: 2, background: '#1E2740', marginBottom: 6, flexShrink: 0 }}>
-        <div style={{ width: `${progress}%`, height: '100%', borderRadius: 2, background: color, transition: 'width 0.4s ease' }} />
-      </div>
-      <div style={{ fontSize: 12, color: '#64748B', textAlign: 'center', marginBottom: 20, flexShrink: 0 }}>{current + 1} of {questions.length}</div>
+  function selectOption(opt) {
+    if (q.type === 'multi') {
+      var arr = Array.isArray(answers[current]) ? answers[current].slice() : [];
+      if (arr.indexOf(opt) !== -1) arr.splice(arr.indexOf(opt), 1);
+      else if (arr.length < (q.max || 3)) arr.push(opt);
+      setAnswers(function(p) { var n = Object.assign({}, p); n[current] = arr; return n; });
+    } else {
+      setAnswers(function(p) { var n = Object.assign({}, p); n[current] = opt; return n; });
+      setTimeout(function() {
+        if (current + 1 >= questions.length) { onComplete(); }
+        else { setCurrent(current + 1); setTextVal(''); }
+      }, 400);
+    }
+  }
 
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <div style={{ fontFamily: 'var(--font-heading)', fontSize: 19, fontWeight: 600, color: '#E2E8F0', textAlign: 'center', marginBottom: 24, lineHeight: 1.4 }}>{q.q}</div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 340, alignSelf: 'center', width: '100%' }}>
-          {q.opts.map((opt, i) => (
-            <button key={i} onClick={() => pick(i)} style={{
-              padding: '14px 18px', borderRadius: 14, border: selected === i ? `2px solid ${color}` : '1px solid rgba(255,255,255,0.06)',
-              background: selected === i ? `${color}15` : '#0F1420', cursor: animating ? 'default' : 'pointer',
-              fontSize: 14, color: selected === i ? '#E2E8F0' : '#94A3B8', textAlign: 'left', fontFamily: 'inherit', transition: 'all 0.2s',
-            }}>{opt}</button>
-          ))}
-        </div>
+  function handleNext() {
+    if (q.type === 'text') {
+      if (!textVal.trim()) return;
+      setAnswers(function(p) { var n = Object.assign({}, p); n[current] = textVal.trim(); return n; });
+    }
+    if (q.type === 'multi' && (!answers[current] || answers[current].length === 0)) return;
+    if (current + 1 >= questions.length) { onComplete(); }
+    else { setCurrent(current + 1); setTextVal(''); }
+  }
+
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '16px 20px', overflowY: 'auto' }}>
+      <div style={{ height: 3, background: '#1E2740', borderRadius: 2, marginBottom: 16, flexShrink: 0 }}>
+        <div style={{ height: 3, borderRadius: 2, background: 'var(--gradient)', width: progress + '%', transition: 'width 0.4s' }} />
       </div>
+      <div style={{ fontSize: 11, color: '#8B5CF6', fontWeight: 700, marginBottom: 4, letterSpacing: 1 }}>{q.layer}</div>
+      <div style={{ fontSize: 12, color: '#64748B', textAlign: 'center', marginBottom: 16, flexShrink: 0 }}>{current + 1} of {questions.length}</div>
+      <div style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 700, color: '#E2E8F0', marginBottom: 20, lineHeight: 1.4 }}>{q.question}</div>
+
+      {q.type === 'choice' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {q.options.map(function(opt, i) {
+            var selected = answers[current] === opt;
+            return (
+              <button key={i} onClick={function() { selectOption(opt); }}
+                style={{ padding: '13px 16px', borderRadius: 12, border: selected ? '1.5px solid #8B5CF6' : '1px solid #1E2740', background: selected ? 'rgba(139,92,246,0.1)' : '#0F1420', color: selected ? '#E2E8F0' : '#94A3B8', fontSize: 13, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', transition: 'all 0.2s' }}>
+                {opt}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {q.type === 'multi' && (
+        <div>
+          <div style={{ fontSize: 11, color: '#64748B', marginBottom: 10 }}>Pick up to {q.max || 3}</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {q.options.map(function(opt, i) {
+              var selected = Array.isArray(answers[current]) && answers[current].indexOf(opt) !== -1;
+              return (
+                <button key={i} onClick={function() { selectOption(opt); }}
+                  style={{ padding: '10px 14px', borderRadius: 10, border: selected ? '1.5px solid #84CC16' : '1px solid #1E2740', background: selected ? 'rgba(132,204,22,0.1)' : '#0F1420', color: selected ? '#E2E8F0' : '#94A3B8', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s' }}>
+                  {opt}
+                </button>
+              );
+            })}
+          </div>
+          <button onClick={handleNext} disabled={!answers[current] || answers[current].length === 0}
+            style={{ marginTop: 16, width: '100%', padding: 12, borderRadius: 10, border: 'none', background: answers[current] && answers[current].length > 0 ? 'var(--gradient)' : '#1E2740', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: answers[current] && answers[current].length > 0 ? 1 : 0.4 }}>
+            Next
+          </button>
+        </div>
+      )}
+
+      {q.type === 'text' && (
+        <div>
+          <input type="text" placeholder={q.placeholder || 'Type your answer...'} value={textVal} onChange={function(e) { setTextVal(e.target.value); }}
+            style={{ width: '100%', padding: '14px 16px', borderRadius: 12, border: '1px solid #1E2740', background: '#0F1420', color: '#E2E8F0', fontSize: 14, fontFamily: 'inherit', outline: 'none' }}
+            onKeyDown={function(e) { if (e.key === 'Enter' && textVal.trim()) handleNext(); }}
+          />
+          <button onClick={handleNext} disabled={!textVal.trim()}
+            style={{ marginTop: 16, width: '100%', padding: 12, borderRadius: 10, border: 'none', background: textVal.trim() ? 'var(--gradient)' : '#1E2740', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: textVal.trim() ? 1 : 0.4 }}>
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }

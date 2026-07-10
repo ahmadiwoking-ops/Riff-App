@@ -404,6 +404,9 @@ export default function Home() {
                 { label: 'Cookie policy', href: '/cookie-policy' },
                 { label: 'GDPR', href: '/gdpr' },
                 { label: 'AI transparency', href: '/ai-transparency' },
+                { label: 'Acceptable use', href: '/acceptable-use-policy' },
+                { label: 'Law enforcement', href: '/law-enforcement' },
+                { label: 'Refund policy', href: '/refund-policy' },
               ]},
             ].map((col, i) => (
               <div key={i}>

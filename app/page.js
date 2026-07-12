@@ -14,15 +14,15 @@ const STAGES = [
 const FEATURES = [
   {
     mode: 'Deep Connection', icon: '◎', color: '#22D3EE',
-    tagline: 'One person. Full depth.',
-    desc: 'Progress through 5 stages with a single match — text, voice, reveal, life stories, full connection. Designed for mentorship, collaboration, or a meaningful 1:1 connection that helps you grow.',
-    highlights: ['Voice scoring system', 'Simultaneous photo reveal', 'Life chapters exchange', 'Full video unlock'],
+    tagline: 'One person. Meaningful growth.',
+    desc: 'Matched with someone who complements your goals and skills. Progress through 5 stages — text, voice, ideas exchange, life chapters, and full connection. Built for finding mentors, collaborators, and people who genuinely help you grow.',
+    highlights: ['Compatibility-based matching on goals and values', 'Voice exchange to test if ideas align', 'Mutual photo reveal — equal and simultaneous', 'Life chapters — share your story with someone who gets it'],
   },
   {
     mode: 'Friend Circle', icon: '◍', color: '#84CC16',
-    tagline: 'Four people. Real friendships.',
-    desc: 'Matched with 4 compatible people simultaneously. Group question rounds reveal personalities before faces. Built for finding your tribe and building lasting friendships.',
-    highlights: ['Group question rounds', '1:1 deep dives within circle', 'Mosaic photo reveal', 'Group chat + meetup calendar'],
+    tagline: 'Four people. Shared ambition.',
+    desc: 'Matched with 4 like-minded people who share your interests and drive. Group conversations, games, and challenges reveal who you click with — before you ever see a face. Built for building a support network that pushes you forward.',
+    highlights: ['Matched on shared topics and complementary strengths', 'Group games that reveal personality and values', 'Circle chat for ideas, support, and accountability', 'Grow together with people on a similar path'],
   },
 ];
 

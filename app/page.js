@@ -255,7 +255,7 @@ export default function Home() {
             </p>
             <div style={{ display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
               {[
-                { label: '5 unique personas', sub: 'Diverse personalities, backgrounds, and communication styles' },
+                { label: '20 unique personas', sub: 'Diverse personalities, backgrounds, and communication styles' },
                 { label: 'Voice responses', sub: 'Hear your AI companion speak — natural, expressive voices' },
                 { label: 'Always safe', sub: '7-layer safety system detects and handles harmful interactions' },
               ].map((p, i) => (

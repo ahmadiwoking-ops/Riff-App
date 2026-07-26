@@ -79,7 +79,7 @@ export default function BotConnectionPage() {
           {PERSONAS.map((p) => (
             <div key={p.alias} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 20, overflow: 'hidden' }}>
               <div style={{ height: 200, overflow: 'hidden', background: '#1a1a2e' }}>
-                <img src={p.img} alt={p.alias} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                <img src={p.img} alt={p.alias} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 25%' }} />
               </div>
               <div style={{ padding: 20 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>

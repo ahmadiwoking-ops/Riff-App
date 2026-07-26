@@ -293,7 +293,7 @@ function MatchFoundStage({ mode, persona, onComplete }) {
     setTyping(true);
     const nh = [...history, { role: 'user', content: text }]; setHistory(nh);
     let botText;
-    try { const res = await fetch(API + '/api/bot-connection/demo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ connectionId: 'web-demo', message: text, conversationHistory: nh.slice(-6), persona: persona }) }); if (res.ok) { const d = await res.json(); botText = d.response || d.text; } } catch {}
+    try { const res = await fetch(API + '/api/bot-connection/web-demo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ connectionId: 'web-demo', message: text, conversationHistory: nh.slice(-6), persona: persona }) }); if (res.ok) { const d = await res.json(); botText = d.response || d.text; } } catch {}
     if (!botText) botText = LOCAL_RESPONSES[Math.floor(Math.random() * LOCAL_RESPONSES.length)];
     setTimeout(() => { setTyping(false); setMessages(p => [...p, { id: Date.now()+1, text: botText, sender: 'bot' }]); setHistory(p => [...p, { role: 'assistant', content: botText }]); }, 1000 + Math.random() * 1500);
   }
@@ -371,7 +371,7 @@ function GroupChatStage({ onComplete }) {
     setTimeout(async function() {
       var botText = null;
       try {
-        var res = await fetch(API + '/api/bot-connection/demo', {
+        var res = await fetch(API + '/api/bot-connection/web-demo', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: text, persona: 'Luna', conversationHistory: [] }),

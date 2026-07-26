@@ -124,7 +124,7 @@ export default function Home() {
               </p>
               <div className="hero-btns" style={{ display: 'flex', gap: 12 }}>
                 <a href="/try-bot" className="btn-primary" style={{ display: "inline-block", textDecoration: "none" }}>Try Riff Demo Free</a>
-                <button className="btn-outline" onClick={() => scrollTo('how')}>See how it works</button>
+                <a href="/bot-connection" className="btn-outline" style={{ display: "inline-block", textDecoration: "none" }}>Meet the AI companions</a>
               </div>
               <div className="hero-stats" style={{ display: 'flex', gap: 24, marginTop: 32 }}>
                 {[['25 Questions', 'Deep matching'], ['72%+', 'Min compatibility'], ['3-Tier', 'ID verification']].map((s, i) => (

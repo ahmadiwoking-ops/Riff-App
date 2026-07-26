@@ -23,7 +23,12 @@ export default function BotConnectionPage() {
   return (
     <div style={{ background: 'var(--bg, #0A0E18)', color: 'var(--text-primary, #F0ECE5)', minHeight: '100vh' }}>
       {/* Hero */}
-      <section style={{ maxWidth: 1100, margin: '0 auto', padding: '100px 24px 60px', textAlign: 'center' }}>
+      <section style={{ maxWidth: 1100, margin: '0 auto', padding: '40px 24px 0', textAlign: 'left' }}>
+        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 14, color: '#8B8B96', textDecoration: 'none', fontWeight: 600 }}>
+          ← Back to home
+        </Link>
+      </section>
+      <section style={{ maxWidth: 1100, margin: '0 auto', padding: '40px 24px 60px', textAlign: 'center' }}>
         <div style={{ display: 'inline-block', padding: '6px 14px', borderRadius: 20, background: 'rgba(236,72,153,0.12)', border: '1px solid rgba(236,72,153,0.3)', marginBottom: 24 }}>
           <span style={{ fontSize: 13, fontWeight: 700, color: '#EC4899', letterSpacing: 0.5 }}>✦ BOT CONNECTION</span>
         </div>

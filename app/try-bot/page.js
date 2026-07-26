@@ -267,7 +267,7 @@ function MatchFoundStage({ mode, persona, onComplete }) {
   const [msgCount, setMsgCount] = useState(0);
   const [history, setHistory] = useState([]);
   const scrollRef = useRef(null);
-  const MAX = 3;
+  const MAX = 10;
 
   useEffect(() => {
     setTimeout(() => {

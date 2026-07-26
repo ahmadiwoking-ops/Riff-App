@@ -388,6 +388,7 @@ export default function Home() {
                 { label: 'How it works', href: '/how-it-works' },
                 { label: 'Deep Connection', href: '/deep-connection' },
                 { label: 'Friend Circle', href: '/friend-circle' },
+                { label: 'Bot Connection', href: '/bot-connection' },
                 { label: 'Pricing', href: '/pricing' },
                 { label: 'Safety', href: '/safety' },
               ]},

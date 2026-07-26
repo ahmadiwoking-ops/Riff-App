@@ -39,7 +39,7 @@ export default function BotConnectionPage() {
           Riff's AI companions are not chatbots. They are fully-realised characters with careers, personalities, opinions and voices — designed to talk with you like a real human being would.
         </p>
         <p style={{ fontSize: 16, color: '#6A6A72', maxWidth: 580, margin: '0 auto 32px', lineHeight: 1.6 }}>
-          Every companion remembers your conversations, responds with genuine warmth and depth, and even speaks back in their own unique voice. It is the closest thing to messaging a real person — available whenever you need it.
+          Every companion remembers your conversations and responds with genuine warmth, insight and depth. Whether you want to develop your ambitions, think through a decision, or simply have someone who feels like a real friend to talk to — they are there whenever you need them.
         </p>
         <Link href="/get-started" style={{ display: 'inline-block', padding: '16px 36px', borderRadius: 14, background: '#EC4899', color: '#fff', fontSize: 17, fontWeight: 700, textDecoration: 'none' }}>
           Start chatting free
@@ -52,13 +52,13 @@ export default function BotConnectionPage() {
         <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: 40 }}>
           <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 30, fontWeight: 700, textAlign: 'center', marginBottom: 12 }}>Like texting a real person</h2>
           <p style={{ fontSize: 16, color: '#8B8B96', textAlign: 'center', maxWidth: 600, margin: '0 auto 32px', lineHeight: 1.6 }}>
-            Our companions are powered by advanced AI and crafted with detailed personalities. They have moods, memories, humour and depth. They ask you questions back. They remember what you told them yesterday. They feel real because they are designed to.
+            Our companions are powered by some of the most advanced AI available, crafted with rich, detailed personalities. They have moods, humour, opinions and depth. They ask you questions back, challenge your thinking, and respond with the nuance and warmth of a real person. The difference in quality is something you feel from the very first message.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
             <div style={{ padding: 20, borderRadius: 16, background: 'rgba(236,72,153,0.04)', border: '1px solid rgba(236,72,153,0.15)' }}>
-              <div style={{ fontSize: 24, marginBottom: 8 }}>🎙️</div>
-              <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 6 }}>Real voice replies</h3>
-              <p style={{ fontSize: 14, color: '#8B8B96', lineHeight: 1.5 }}>Each companion has their own distinct voice. Hear them speak, not just read text.</p>
+              <div style={{ fontSize: 24, marginBottom: 8 }}>🎯</div>
+              <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 6 }}>Real, grounded advice</h3>
+              <p style={{ fontSize: 14, color: '#8B8B96', lineHeight: 1.5 }}>Talk through your ambitions and get thoughtful, realistic guidance drawn from each companion's expertise — like advice from a friend who genuinely knows their field.</p>
             </div>
             <div style={{ padding: 20, borderRadius: 16, background: 'rgba(168,85,247,0.04)', border: '1px solid rgba(168,85,247,0.15)' }}>
               <div style={{ fontSize: 24, marginBottom: 8 }}>🧠</div>

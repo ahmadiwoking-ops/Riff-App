@@ -236,7 +236,7 @@ export default function GetStarted() {
             </div>
             <button onClick={handleRegister} disabled={loading} style={{ width: '100%', padding: '14px 0', borderRadius: 14, border: 'none', background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', color: '#fff', fontWeight: 600, fontSize: 15, cursor: 'pointer', fontFamily: 'inherit', opacity: loading ? 0.6 : 1 }}>{loading ? 'Creating...' : 'Create account'}</button>
             <div style={{ textAlign: 'center', marginTop: 16 }}>
-              <button onClick={() => { setStep('login'); setError(''); }} style={{ background: 'none', border: 'none', color: '#64748B', fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>Already have an account? <span style={{ color: '#22D3EE' }}>Sign in</span></button>
+              <p style={{ fontSize: 12, color: '#64748B', lineHeight: 1.5 }}>Already registered? Download the Riff app on your phone to log in and start connecting.</p>
             </div>
           </div>
         )}

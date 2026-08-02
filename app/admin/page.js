@@ -244,6 +244,7 @@ export default function AdminPage() {
                           {[
                             { label: 'Selfie verified', value: u.selfieVerified, icon: '🤳' },
                             { label: 'ID verified', value: u.idVerified, icon: '📄' },
+                            { label: 'Payment', value: u.verificationPaid, icon: '💳' },
                             { label: 'Phone verified', value: u.phoneVerified, icon: '📱' },
                             { label: 'Email verified', value: u.emailVerified, icon: '✉️' },
                           ].map((v, vi) => (
@@ -256,6 +257,12 @@ export default function AdminPage() {
                         <div style={{ padding: '10px 12px', borderRadius: 10, background: '#151B2B' }}>
                           <div style={{ fontSize: 11, fontWeight: 600, color: '#94A3B8', marginBottom: 8 }}>Security</div>
                           <div style={{ fontSize: 12, color: '#94A3B8', marginBottom: 4 }}>Trust: <span style={{ color: u.trustScore === 'green' ? '#22C55E' : u.trustScore === 'yellow' ? '#F59E0B' : '#EF4444', fontWeight: 600 }}>{u.trustScore}</span></div>
+                          {u.verificationSelfie ? (
+                            <div style={{ marginTop: 8 }}>
+                              <div style={{ fontSize: 12, color: '#94A3B8', marginBottom: 4 }}>Verification selfie:</div>
+                              <img src={u.verificationSelfie} alt="Verification selfie" style={{ width: 96, height: 96, borderRadius: 8, objectFit: 'cover', border: '1px solid #334155' }} />
+                            </div>
+                          ) : null}
                           <div style={{ fontSize: 12, color: '#94A3B8', marginBottom: 4 }}>Flags: <span style={{ color: u.trustFlags > 0 ? '#EF4444' : '#64748B', fontWeight: 600 }}>{u.trustFlags || 0}</span></div>
                           <div style={{ fontSize: 12, color: '#94A3B8', marginBottom: 4 }}>Plan: <span style={{ color: u.plan === 'free' ? '#64748B' : '#22C55E', fontWeight: 600 }}>{u.plan}</span>{u.planExpiresAt && <span style={{ color: '#64748B' }}> (exp {new Date(u.planExpiresAt).toLocaleDateString('en-GB')})</span>}</div>
                           <div style={{ fontSize: 12, color: '#94A3B8', marginBottom: 4 }}>Status: <span style={{ color: u.isBanned ? '#EF4444' : '#22C55E', fontWeight: 600 }}>{u.isBanned ? 'BANNED' : u.isActive ? 'Active' : 'Inactive'}</span></div>

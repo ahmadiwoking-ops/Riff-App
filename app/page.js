@@ -274,7 +274,8 @@ export default function Home() {
         <div className="section">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <div className="section-label" style={{ color: 'var(--cyan)' }}>Pricing</div>
-            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Plans from £2.99/month. Try Riff Demo Free.</h2>
+            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Plans from £2.99/month. Start free for 7 days.</h2>
+            <p style={{ fontSize: 15, color: '#8B8B96', maxWidth: 560, margin: '0 auto 24px', lineHeight: 1.6 }}>Download the app and try a Deep Connection free for 7 days from sign-up — no card needed. After that you can still read your conversations; subscribe to keep messaging.</p>
             <div className="pricing-toggle">
               <button className={billing === 'monthly' ? 'active' : ''} onClick={() => setBilling('monthly')}>Monthly</button>
               <button className={billing === 'yearly' ? 'active' : ''} onClick={() => setBilling('yearly')}>

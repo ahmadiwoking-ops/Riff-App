@@ -124,7 +124,7 @@ const jsonLd = {
     'Voice messaging and voice scoring',
     'Verified users with government ID and liveness detection',
     'Friend Circle groups of 4 compatible people',
-    'AI-powered companions with voice responses',
+    'AI-powered companions with real personalities',
     'End-to-end encrypted conversations',
     'Trust score system for safety',
     'Compatibility-based matching with 72% minimum threshold',

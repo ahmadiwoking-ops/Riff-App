@@ -78,7 +78,7 @@ export default function BotConnectionPage() {
       <section style={{ maxWidth: 1100, margin: '0 auto', padding: '60px 24px' }}>
         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 34, fontWeight: 700, textAlign: 'center', marginBottom: 12 }}>Meet a few of your companions</h2>
         <p style={{ fontSize: 16, color: '#8B8B96', textAlign: 'center', maxWidth: 560, margin: '0 auto 40px', lineHeight: 1.6 }}>
-          20 unique personas, each with a real career, a distinct personality, and their own way of talking. Here are just a few.
+          25 unique personas, each with a real career, a distinct personality, and their own way of talking. Here are just a few.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
           {PERSONAS.map((p) => (
@@ -155,7 +155,7 @@ export default function BotConnectionPage() {
       <section style={{ maxWidth: 700, margin: '0 auto', padding: '20px 24px 100px', textAlign: 'center' }}>
         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, fontWeight: 800, marginBottom: 16 }}>Meet your first companion today</h2>
         <p style={{ fontSize: 17, color: '#8B8B96', marginBottom: 28, lineHeight: 1.6 }}>
-          Start with five companions completely free. Upgrade any time to unlock all 20, plus 500 messages a month and voice replies.
+          Start with five companions completely free. Upgrade any time to unlock all 25, plus 500 messages a month.
         </p>
         <Link href="/get-started" style={{ display: 'inline-block', padding: '16px 36px', borderRadius: 14, background: '#EC4899', color: '#fff', fontSize: 17, fontWeight: 700, textDecoration: 'none' }}>
           Start chatting free

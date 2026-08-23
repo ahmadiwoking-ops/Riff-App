@@ -231,7 +231,7 @@ function MatchFoundStage({ mode, persona, onComplete }) {
           <div style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 10, background: 'rgba(34,211,238,0.1)', border: '1px solid rgba(34,211,238,0.2)', marginBottom: 8 }}>
             <span style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 800, color: '#22D3EE' }}>{score}%</span><span style={{ fontSize: 13, color: '#94A3B8', marginLeft: 6 }}>compatible</span>
           </div>
-          <div style={{ fontSize: 13, color: '#64748B' }}>Based on your answers · Above 72% threshold</div>
+          <div style={{ fontSize: 13, color: '#64748B' }}>Based on your answers · Scored across four layers</div>
         </>)}
       </div>
     );
@@ -597,7 +597,7 @@ function VoiceStage({ mode, onComplete }) {
           {recorded && <div style={{ fontSize: 13, color: '#22C55E' }}>✓ Message sent</div>}
         </>)}
       </>)}
-      {allDone && (<div style={{ textAlign: 'center' }}><div style={{ fontSize: 40, marginBottom: 12 }}>✓</div><div style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 600, color: stageColor }}>Voice stage complete</div><div style={{ fontSize: 13, color: '#94A3B8', marginTop: 6 }}>{mode === 'circle' ? 'Your circle is bonding! Moving on...' : 'Both scored 4/5+. Reveal unlocked.'}</div></div>)}
+      {allDone && (<div style={{ textAlign: 'center' }}><div style={{ fontSize: 40, marginBottom: 12 }}>✓</div><div style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 600, color: stageColor }}>Voice stage complete</div><div style={{ fontSize: 13, color: '#94A3B8', marginTop: 6 }}>{mode === 'circle' ? 'Your circle is bonding! Moving on...' : 'You are both ready. Reveal unlocked.'}</div></div>)}
     </div>
   );
 }
@@ -762,7 +762,7 @@ function FinalStage({ mode }) {
               { icon: '💬', label: 'Unlimited chat', desc: 'Text messaging with no limits', color: '#22D3EE' },
               { icon: '🎙', label: 'Voice messages', desc: 'Send and receive voice notes anytime', color: '#F59E0B' },
               { icon: '📹', label: 'Video calls', desc: 'Face-to-face whenever you want', color: '#8B5CF6' },
-              { icon: '📖', label: 'Life chapters', desc: 'Share your deeper stories', color: '#EC4899' },
+              { icon: '📹', label: 'Video', desc: 'Unlock video when you are both ready', color: '#EC4899' },
               { icon: '📸', label: 'Shared memories', desc: 'Build a timeline together', color: '#84CC16' },
             ].map((f, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '12px 14px', borderRadius: 14, background: '#0F1420', border: '1px solid rgba(255,255,255,0.06)', animation: `fadeIn ${0.3 + i * 0.15}s ease` }}>

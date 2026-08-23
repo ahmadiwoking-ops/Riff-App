@@ -5,18 +5,18 @@ import Image from 'next/image';
 
 const STAGES = [
   { num: '01', title: 'Answer questions', desc: '25 questions across values, goals, perspectives, and communication style. No scrolling profiles — just honest answers.', icon: '💭', color: '#8B5CF6' },
-  { num: '02', title: 'Get matched', desc: 'Our algorithm finds people who think like you — not look like you. 72%+ compatibility required.', icon: '✦', color: '#EC4899' },
-  { num: '03', title: 'Riff in text', desc: 'Message your match. Ask anything. No photos, no names — just pure personality and shared ideas.', icon: '💬', color: '#F59E0B' },
-  { num: '04', title: 'Unlock voice', desc: 'Hear each other for the first time. Rate the connection. If both score 4/5+, the reveal unlocks.', icon: '🎙', color: '#22D3EE' },
-  { num: '05', title: 'The reveal', desc: 'Both photos appear at the exact same moment. No power imbalance. Then choose: continue building or let it fade.', icon: '📸', color: '#84CC16' },
+  { num: '02', title: 'Get matched', desc: 'Our algorithm finds people who think like you — not look like you. Every match comes with a compatibility score and a breakdown of why.', icon: '✦', color: '#EC4899' },
+  { num: '03', title: 'Riff in text and voice', desc: 'Message and send voice notes from the first moment. No photos, no real names — just personality and shared ideas.', icon: '💬', color: '#F59E0B' },
+  { num: '04', title: 'The reveal', desc: 'When you both tap ready, you each take a live selfie and they appear at the same moment. No power imbalance. That photo becomes your profile picture.', icon: '📸', color: '#22D3EE' },
+  { num: '05', title: 'Video, or a graceful goodbye', desc: 'If you both want to, unlock video and meet properly. If not, fade — end it with your own message, or let Riff write a gentle goodbye for you.', icon: '📹', color: '#84CC16' },
 ];
 
 const FEATURES = [
   {
     mode: 'Deep Connection', icon: '◎', color: '#22D3EE',
     tagline: 'One person. Meaningful growth.',
-    desc: 'Matched with someone who complements your goals and skills. Progress through 5 stages — text, voice, ideas exchange, life chapters, and full connection. Built for finding mentors, collaborators, and people who genuinely help you grow.',
-    highlights: ['Compatibility-based matching on goals and values', 'Voice exchange to test if ideas align', 'Mutual photo reveal — equal and simultaneous', 'Life chapters — share your story with someone who gets it'],
+    desc: 'Matched with someone who complements your goals and skills. Talk by text and voice, reveal your faces at the same moment, then unlock video. Built for finding mentors, collaborators, and people who genuinely help you grow.',
+    highlights: ['Compatibility-based matching on goals and values', 'Voice exchange to test if ideas align', 'Mutual photo reveal — equal and simultaneous', 'Fade gracefully — end a connection kindly, or let Riff write the goodbye'],
   },
   {
     mode: 'Friend Circle', icon: '◍', color: '#84CC16',
@@ -127,7 +127,7 @@ export default function Home() {
                 <a href="/bot-connection" className="btn-outline" style={{ display: "inline-block", textDecoration: "none" }}>Meet the AI companions</a>
               </div>
               <div className="hero-stats" style={{ display: 'flex', gap: 24, marginTop: 32 }}>
-                {[['25 Questions', 'Deep matching'], ['72%+', 'Min compatibility'], ['3-Tier', 'ID verification']].map((s, i) => (
+                {[['25 Questions', 'Deep matching'], ['4-Layer', 'Compatibility score'], ['3-Tier', 'ID verification']].map((s, i) => (
                   <div key={i}>
                     <div style={{ fontSize: 22, fontWeight: 700, fontFamily: 'var(--font-heading)' }}>{s[0]}</div>
                     <div style={{ fontSize: 12, color: 'var(--text-dim)' }}>{s[1]}</div>

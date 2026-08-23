@@ -121,13 +121,13 @@ const jsonLd = {
   },
   featureList: [
     'Meet like-minded people through compatibility matching',
-    'Voice messaging and voice scoring',
+    'Voice messaging from the first conversation',
     'Verified users with government ID and liveness detection',
     'Friend Circle groups of 4 compatible people',
     'AI-powered companions with real personalities',
     'Conversations encrypted in transit and at rest',
     'Trust score system for safety',
-    'Compatibility-based matching with 72% minimum threshold',
+    'Compatibility-based matching across values, goals and communication style',
   ],
 };
 

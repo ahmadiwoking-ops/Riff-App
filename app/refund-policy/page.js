@@ -27,7 +27,7 @@ export default function RefundPolicy() {
       <p style={{ marginBottom: 16 }}>The introductory pricing period (£3.99 for 6 months on the Single plan) has been fully consumed.</p>
 
       <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginTop: 40, marginBottom: 12 }}>5. Verification fee</h2>
-      <p style={{ marginBottom: 16 }}>The one-time verification fee (£2.99) covers the cost of third-party identity verification through Veriff. This fee is non-refundable once the verification process has been initiated, as we incur the cost from our verification provider regardless of the outcome. If verification fails due to a technical error on our part, a full refund of the verification fee will be issued.</p>
+      <p style={{ marginBottom: 16 }}>The one-time verification fee (£5.99) covers the cost of third-party identity verification through Veriff. This fee is non-refundable once the verification process has been initiated, as we incur the cost from our verification provider regardless of the outcome. If verification fails due to a technical error on our part, a full refund of the verification fee will be issued.</p>
 
       <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginTop: 40, marginBottom: 12 }}>6. How to request a refund</h2>
       <p style={{ marginBottom: 16 }}>To request a refund, email Admin@riff-app.co.uk with the following information: your account email address, the date of purchase, the amount charged, and a brief description of why you are requesting a refund. We aim to acknowledge all refund requests within 2 working days and process approved refunds within 5-10 working days.</p>

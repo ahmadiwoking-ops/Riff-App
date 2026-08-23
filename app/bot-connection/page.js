@@ -16,7 +16,7 @@ const BENEFITS = [
   { icon: '🎯', title: 'Career Development', color: '#0EA5E9', points: ['Practise interviews with a CEO or hiring manager persona', 'Get feedback on business ideas from an entrepreneur', 'Learn negotiation, leadership and strategy through conversation', 'Explore a career change with someone who has been there'] },
   { icon: '🧠', title: 'Mental Wellbeing', color: '#A855F7', points: ['A judgement-free space to talk through what is on your mind', 'Practise difficult conversations before you have them', 'Reflect on your goals with a thoughtful listener', 'Build confidence in social interaction at your own pace'] },
   { icon: '🌱', title: 'Personal Growth', color: '#84CC16', points: ['Learn new subjects from experts in their field', 'Get motivated by an athlete or coach persona', 'Explore philosophy, creativity and big ideas', 'Develop discipline and accountability through daily check-ins'] },
-  { icon: '💬', title: 'Everyday Connection', color: '#EC4899', points: ['Someone to talk to any time, day or night', 'Play games, share stories, or just have a laugh', 'Combat loneliness with genuine, flowing conversation', 'Voice replies that make it feel like a real call'] },
+  { icon: '💬', title: 'Everyday Connection', color: '#EC4899', points: ['Someone to talk to any time, day or night', 'Play games, share stories, or just have a laugh', 'Combat loneliness with genuine, flowing conversation', 'Companions who remember you and pick up where you left off'] },
 ];
 
 export default function BotConnectionPage() {
@@ -36,7 +36,7 @@ export default function BotConnectionPage() {
           Conversations so real,<br />you'll forget they're AI
         </h1>
         <p style={{ fontSize: 20, color: '#8B8B96', maxWidth: 640, margin: '0 auto 16px', lineHeight: 1.5 }}>
-          Riff's AI companions are not chatbots. They are fully-realised characters with careers, personalities, opinions and voices — designed to talk with you like a real human being would.
+          Riff's AI companions are not chatbots. They are fully-realised characters with careers, personalities and opinions — designed to talk with you like a real human being would.
         </p>
         <p style={{ fontSize: 16, color: '#6A6A72', maxWidth: 580, margin: '0 auto 32px', lineHeight: 1.6 }}>
           Every companion remembers your conversations and responds with genuine warmth, insight and depth. Whether you want to develop your ambitions, think through a decision, or simply have someone who feels like a real friend to talk to — they are there whenever you need them.

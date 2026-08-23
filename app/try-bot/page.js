@@ -73,7 +73,7 @@ function VerificationStage({ onComplete }) {
       {step === 0 && (<>
         <div style={{ width: 80, height: 80, borderRadius: 20, background: 'rgba(34,197,94,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}><span style={{ fontSize: 36 }}>🛡</span></div>
         <div style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 700, marginBottom: 8, color: '#E2E8F0' }}>Identity verification</div>
-        <p style={{ fontSize: 14, color: '#94A3B8', lineHeight: 1.7, marginBottom: 8, maxWidth: 300 }}>Every Riff user is verified. This keeps the community safe and real.</p>
+        <p style={{ fontSize: 14, color: '#94A3B8', lineHeight: 1.7, marginBottom: 8, maxWidth: 300 }}>Verify your ID to earn a green Trust Score, so people know you are real.</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%', maxWidth: 280, margin: '20px 0' }}>
           {[{ icon: '📄', label: 'Government ID scan', desc: 'Passport or driving licence' }, { icon: '🤳', label: 'Live selfie match', desc: 'Confirms you are you' }, { icon: '📱', label: 'Phone verification', desc: 'SMS code to your number' }].map((s, i) => (
             <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '12px 14px', borderRadius: 12, background: '#151B2B', border: '1px solid rgba(255,255,255,0.06)' }}>

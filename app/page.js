@@ -31,7 +31,7 @@ const SAFETY = [
   { icon: '🟢', title: 'Trust score', desc: 'Green, yellow, or red indicator. Cross-references claims against verified data.' },
   { icon: '🤖', title: 'AI companions', desc: 'AI-powered companions keep you engaged while we find your real connections. Fully transparent.' },
   { icon: '⚑', title: 'Real-time safety', desc: '7-layer detection system monitors for harmful behaviour and protects every user.' },
-  { icon: '🔐', title: 'Encrypted', desc: 'Photos and voice messages encrypted end-to-end. We can\'t see them. Nobody can.' },
+  { icon: '🔐', title: 'Encrypted', desc: 'Photos and voice messages are encrypted in transit and at rest, and never sold or shared.' },
   { icon: '👁', title: 'Liveness detection', desc: 'Photos require in-app capture with blink and head-turn verification. No catfishing.' },
 ];
 
@@ -59,7 +59,7 @@ const FAQS = [
   { q: 'What are AI Companions?', a: 'While we search for your real connections, you can chat with AI companions that help you explore the app and discover what matters to you in a conversation. It\'s fully transparent — you\'ll always know it\'s AI, and it naturally fades when your real connections arrive.' },
   { q: 'How do you prevent catfishing?', a: 'Every user submits a government ID and takes a live selfie with liveness detection (blink and head-turn prompts). Photos in the app require in-app capture and pass reverse image search. Your Trust Score is visible to your connections.' },
   { q: 'What if I don\'t connect with my match after the reveal?', a: 'Both people independently choose \'Continue\' or \'Let it fade.\' If either person chooses to fade, the connection closes gracefully. Neither person knows who made the choice. No blame, no awkwardness.' },
-  { q: 'Is my data safe?', a: 'Photos and voice messages are encrypted end-to-end. Your verified identity is never shared with other users — they only see your Trust Score colour. We comply with GDPR, California privacy laws, and the EU AI Act.' },
+  { q: 'Is my data safe?', a: 'Photos and voice messages are encrypted in transit and at rest. Your verified identity is never shared with other users — they only see your Trust Score colour. We comply with GDPR, California privacy laws, and the EU AI Act.' },
   { q: 'How much does it cost?', a: 'Single plan starts at £3.99 for 6 months (then £2.99/mo). Explorer (£5.99/mo) adds more connections and priority matching. Inner Circle (£11.99/mo) unlocks everything. Try the AI companion free before subscribing.' },
 ];
 
@@ -255,8 +255,8 @@ export default function Home() {
             </p>
             <div style={{ display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
               {[
-                { label: '20 unique personas', sub: 'Diverse personalities, backgrounds, and communication styles' },
-                { label: 'Voice responses', sub: 'Hear your AI companion speak — natural, expressive voices' },
+                { label: '25 unique personas', sub: 'Diverse personalities, backgrounds, and communication styles' },
+                { label: 'Mentoring and friendship', sub: 'Real conversations that feel like talking to an actual person' },
                 { label: 'Always safe', sub: '7-layer safety system detects and handles harmful interactions' },
               ].map((p, i) => (
                 <div key={i} className="glass" style={{ padding: '20px 24px', flex: '1 1 180px', maxWidth: 220, textAlign: 'left' }}>

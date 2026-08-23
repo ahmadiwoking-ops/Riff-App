@@ -125,7 +125,7 @@ const jsonLd = {
     'Verified users with government ID and liveness detection',
     'Friend Circle groups of 4 compatible people',
     'AI-powered companions with real personalities',
-    'End-to-end encrypted conversations',
+    'Conversations encrypted in transit and at rest',
     'Trust score system for safety',
     'Compatibility-based matching with 72% minimum threshold',
   ],
@@ -164,7 +164,7 @@ const faqJsonLd = {
       name: 'Is Riff safe to use for meeting people online?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Every Riff user is verified with government ID and a live selfie with liveness detection. All conversations are end-to-end encrypted, and a Trust Score system helps you assess the authenticity of your connections.',
+        text: 'Riff users can verify their identity with government ID and a live selfie, earning a green Trust Score. Conversations are encrypted in transit and at rest, and the Trust Score system shows you at a glance how far someone has verified.',
       },
     },
     {

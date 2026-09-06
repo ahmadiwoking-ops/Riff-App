@@ -8,7 +8,7 @@ export default function RefundPolicy() {
       <p style={{ marginBottom: 16, fontSize: 17 }}>We want you to be happy with Riff. This refund policy explains when and how you can request a refund for your subscription or purchase.</p>
 
       <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginTop: 40, marginBottom: 12 }}>1. Subscription plans</h2>
-      <p style={{ marginBottom: 16 }}>Riff offers the following paid plans: Single (£2.99/month), Bot Connection (£7.99/month), Explorer (£5.99/month), and Inner Circle (£11.99/month). All subscriptions are billed monthly or annually through Stripe, Apple App Store, or Google Play Store depending on your platform.</p>
+      <p style={{ marginBottom: 16 }}>Riff offers the following paid plans: Riff Single (£5.99/month or £35.00/year), AI Companions (£7.99/month or £71.88/year), Explorer (£8.99/month or £45.00/year), and Inner Circle (£11.99/month or £74.99/year). All subscriptions are billed monthly or annually through Stripe, Apple App Store, or Google Play Store depending on your platform.</p>
 
       <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginTop: 40, marginBottom: 12 }}>2. Cooling-off period</h2>
       <p style={{ marginBottom: 16 }}>In accordance with UK consumer law (Consumer Contracts Regulations 2013), you have a 14-day cooling-off period from the date of purchase. During this period, you may request a full refund for any reason, even if you have used the service. To exercise this right, contact Admin@riff-app.co.uk within 14 days of your purchase with your account email and the reason for your request.</p>
@@ -24,7 +24,6 @@ export default function RefundPolicy() {
       <p style={{ marginBottom: 8 }}>Your account was banned for violating our Acceptable Use Policy or Terms of Service.</p>
       <p style={{ marginBottom: 8 }}>You have used the service extensively during the billing period and are requesting a refund for reasons of personal preference.</p>
       <p style={{ marginBottom: 8 }}>You did not cancel your subscription before the renewal date and are requesting a refund for the renewed period after significant use.</p>
-      <p style={{ marginBottom: 16 }}>The introductory pricing period (£3.99 for 6 months on the Single plan) has been fully consumed.</p>
 
       <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginTop: 40, marginBottom: 12 }}>5. Verification fee</h2>
       <p style={{ marginBottom: 16 }}>The one-time verification fee (£5.99) covers the cost of third-party identity verification through Veriff. This fee is non-refundable once the verification process has been initiated, as we incur the cost from our verification provider regardless of the outcome. If verification fails due to a technical error on our part, a full refund of the verification fee will be issued.</p>

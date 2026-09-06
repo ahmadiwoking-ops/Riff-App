@@ -42,11 +42,6 @@ const PRICING = [
     cta: 'Get started', yearLabel: '/year',
   },
   {
-    tier: 'AI Companions', priceM: '7.99', priceY: '71.88', color: '#8B5CF6', desc: 'Companions only',
-    features: ['25 AI companions', '500 messages a month', 'Voice responses', 'Games and reflective mode', 'Included free with every plan below'],
-    cta: 'Start chatting', yearLabel: '/year',
-  },
-  {
     tier: 'Explorer', priceM: '8.99', priceY: '45.00', color: '#22D3EE', desc: 'More connections', popular: true,
     features: ['2 Deep Connections', '3 Friend Circles', '\u{1F7E2} Green verification included', 'Local circles by county', 'AI Companions included'],
     cta: 'Start exploring', yearLabel: '/year',
@@ -57,6 +52,13 @@ const PRICING = [
     cta: 'Go all in', yearLabel: '/year',
   },
 ];
+
+// Rendered on its own row beneath the three plans.
+const COMPANION_PLAN = {
+  tier: 'AI Companions', priceM: '7.99', priceY: '71.88', color: '#8B5CF6', desc: 'Companions only',
+  features: ['25 AI companions', '500 messages a month', 'Voice responses', 'Games and reflective mode', 'Included free with every other plan'],
+  cta: 'Start chatting', yearLabel: '/year',
+};
 
 const FAQS = [
   { q: 'How is Riff different from other social apps?', a: 'Most social apps show you a profile and ask you to judge in seconds. Riff shows you nothing — you connect through questions, text, and voice before you ever see a face. By the time the photo reveal happens, you already know if you click. It\'s connection first, appearance second.' },
@@ -380,7 +382,7 @@ export default function Home() {
                 { label: 'How it works', href: '/how-it-works' },
                 { label: 'Deep Connection', href: '/deep-connection' },
                 { label: 'Friend Circle', href: '/friend-circle' },
-                { label: 'Bot Connection', href: '/bot-connection' },
+                { label: 'AI Companions', href: '/bot-connection' },
                 { label: 'Pricing', href: '/pricing' },
                 { label: 'Safety', href: '/safety' },
               ]},

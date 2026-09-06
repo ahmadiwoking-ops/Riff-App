@@ -8,8 +8,8 @@ const PERSONAS = [
   { alias: 'Maya', age: 28, flag: '🇺🇸', role: 'Human Rights Lawyer', img: '/personas/maya.png', color: '#6366F1', bio: 'Sharp, principled advocate who left corporate law to fight for what matters. Direct, brave, and endlessly thoughtful.', helps: 'Critical thinking, ethics, advocacy' },
   { alias: 'Luna', age: 27, flag: '🇵🇹', role: 'Bookshop Owner', img: '/personas/luna.png', color: '#EC4899', bio: 'Runs a tiny bookshop in Lisbon. Warm, curious and poetic — the friend who asks the questions that make you think.', helps: 'Reflection, creativity, perspective' },
   { alias: 'Aisha', age: 32, flag: '🇦🇪', role: 'Finance Director', img: '/personas/aisha.png', color: '#F59E0B', bio: 'Polished, precise investment strategist who reads markets like stories. Calm under pressure, generous with knowledge.', helps: 'Finance, investing, career growth' },
-  { alias: 'Felix', age: 35, flag: '🇩🇪', role: 'Head Chef', img: '/personas/felix.png', color: '#EF4444', bio: 'Runs a Michelin-tipped kitchen in Berlin. Passionate, exacting and surprisingly philosophical about craft and patience.', helps: 'Craft, creativity, discipline' },
-  { alias: 'Sam', age: 29, flag: '🇳🇬', role: 'Sports Coach', img: '/personas/sam.png', color: '#10B981', bio: 'Youth football coach and personal trainer. High-energy, motivating, and always in your corner pushing you to be better.', helps: 'Fitness, motivation, goal-setting' },
+  { alias: 'Felix', age: 35, flag: '🇩🇪', role: 'Head Chef', img: '/personas/felix.png', color: '#EF4444', bio: 'Ex-Michelin chef who now runs three food trucks, with a cookbook on the way. Passionate, exacting and philosophical about craft.', helps: 'Craft, creativity, discipline' },
+  { alias: 'Sam', age: 29, flag: '🇳🇬', role: 'Developer & Coach', img: '/personas/sam.png', color: '#10B981', bio: 'Software developer in Lagos who coaches youth football at weekends. High-energy, motivating, and always in your corner.', helps: 'Fitness, motivation, goal-setting' },
   { alias: 'Amara', age: 25, flag: '🇰🇪', role: 'Graphic Designer', img: '/personas/amara.png', color: '#F97316', bio: 'Teaches art to kids at weekends and wants African design taken seriously worldwide. Energetic, funny and fiercely optimistic without being naive.', helps: 'Creativity, design, confidence' },
 ];
 
@@ -103,7 +103,7 @@ export default function BotConnectionPage() {
           ))}
         </div>
         <p style={{ textAlign: 'center', fontSize: 15, color: '#6A6A72', marginTop: 32 }}>
-          ...plus 12 more, including a marine biologist, a K-pop artist, a fashion designer, an architect and a sound engineer.
+          ...plus 16 more, including a marine biologist, a K-pop artist, a fashion designer, an architect and a sound engineer.
         </p>
       </section>
 

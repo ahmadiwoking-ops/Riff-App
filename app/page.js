@@ -323,6 +323,29 @@ export default function Home() {
               );
             })}
           </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
+            <div className="glass" style={{ padding: 28, width: '100%', maxWidth: 360 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: COMPANION_PLAN.color, marginBottom: 4 }}>{COMPANION_PLAN.tier}</div>
+              <div style={{ fontSize: 12, color: 'var(--text-dim)', marginBottom: 16 }}>{COMPANION_PLAN.desc}</div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
+                <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>£{billing === 'monthly' ? COMPANION_PLAN.priceM : COMPANION_PLAN.priceY}</span>
+                <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>{billing === 'yearly' ? COMPANION_PLAN.yearLabel : '/mo'}</span>
+              </div>
+              {billing === 'yearly' && (
+                <div style={{ fontSize: 12, color: 'var(--green)', marginBottom: 8 }}>Billed annually</div>
+              )}
+              <div style={{ height: 1, background: 'var(--border)', margin: '16px 0' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
+                {COMPANION_PLAN.features.map((f, fi) => (
+                  <div key={fi} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13, color: '#CBD5E1' }}>
+                    <span style={{ color: COMPANION_PLAN.color, fontSize: 14, marginTop: 1 }}>✓</span>
+                    {f}
+                  </div>
+                ))}
+              </div>
+              <a href="/get-started" className="btn-outline" style={{ width: '100%', padding: 12, fontSize: 13, textDecoration: 'none' }}>{COMPANION_PLAN.cta}</a>
+            </div>
+          </div>
         </div>
       </section>
 

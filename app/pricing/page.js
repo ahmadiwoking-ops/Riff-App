@@ -117,7 +117,7 @@ export default function Pricing() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 16 }}>
         {plans.map((p, i) => <Card key={i} p={p} />)}
       </div>
 

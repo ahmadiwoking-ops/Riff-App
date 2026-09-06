@@ -37,19 +37,24 @@ const SAFETY = [
 
 const PRICING = [
   {
-    tier: 'Single', priceM: '2.99', priceY: '3.99', color: '#EC4899', desc: '1 deep connection', isIntro: true,
-    features: ['1 Deep Connection', '1 Friend Circle', '\u{1F7E2} Green verification included', 'Text + voice messaging', 'Photo reveal'],
-    cta: 'Get started', yearLabel: '/6 months', introOffer: true,
+    tier: 'Riff Single', priceM: '5.99', priceY: '35.00', color: '#EC4899', desc: '1 deep connection',
+    features: ['1 Deep Connection', '1 Friend Circle', '\u{1F7E2} Green verification included', 'Voice notes and photo sharing', 'AI Companions included'],
+    cta: 'Get started', yearLabel: '/year',
   },
   {
-    tier: 'Explorer', priceM: '5.99', priceY: '3.79', color: '#22D3EE', desc: 'More connections', popular: true,
-    features: ['2 Deep Connections', '3 Friend Circles', '\u{1F7E2} Green verification included', 'Priority matching', 'Custom questions'],
-    cta: 'Start exploring', yearLabel: '/mo',
+    tier: 'AI Companions', priceM: '7.99', priceY: '71.88', color: '#8B5CF6', desc: 'Companions only',
+    features: ['25 AI companions', '500 messages a month', 'Voice responses', 'Games and reflective mode', 'Included free with every plan below'],
+    cta: 'Start chatting', yearLabel: '/year',
   },
   {
-    tier: 'Inner Circle', priceM: '11.99', priceY: '7.49', color: '#F59E0B', desc: 'Full experience',
-    features: ['Unlimited connections', 'Unlimited circles', '\u{1F7E2} Green verification included', 'Circle analytics', 'Early access features'],
-    cta: 'Go all in', yearLabel: '/mo',
+    tier: 'Explorer', priceM: '8.99', priceY: '45.00', color: '#22D3EE', desc: 'More connections', popular: true,
+    features: ['2 Deep Connections', '3 Friend Circles', '\u{1F7E2} Green verification included', 'Local circles by county', 'AI Companions included'],
+    cta: 'Start exploring', yearLabel: '/year',
+  },
+  {
+    tier: 'Inner Circle', priceM: '11.99', priceY: '74.99', color: '#F59E0B', desc: 'Full experience',
+    features: ['Unlimited connections over time', 'Five at a time, so you can go deep', 'Unlimited Friend Circles', '\u{1F7E2} Green verification included', 'Parallel Lives'],
+    cta: 'Go all in', yearLabel: '/year',
   },
 ];
 
@@ -60,7 +65,7 @@ const FAQS = [
   { q: 'How do you prevent catfishing?', a: 'Every user submits a government ID and takes a live selfie with liveness detection (blink and head-turn prompts). Photos in the app require in-app capture and pass reverse image search. Your Trust Score is visible to your connections.' },
   { q: 'What if I don\'t connect with my match after the reveal?', a: 'Both people independently choose \'Continue\' or \'Let it fade.\' If either person chooses to fade, the connection closes gracefully. Neither person knows who made the choice. No blame, no awkwardness.' },
   { q: 'Is my data safe?', a: 'Photos and voice messages are encrypted in transit and at rest. Your verified identity is never shared with other users — they only see your Trust Score colour. We comply with GDPR, California privacy laws, and the EU AI Act.' },
-  { q: 'How much does it cost?', a: 'Single plan starts at £3.99 for 6 months (then £2.99/mo). Explorer (£5.99/mo) adds more connections and priority matching. Inner Circle (£11.99/mo) unlocks everything. Try the AI companion free before subscribing.' },
+  { q: 'How much does it cost?', a: 'Everyone starts with a 7-day free trial. Riff Single is £5.99/mo or £35/year, Explorer £8.99/mo or £45/year, and Inner Circle £11.99/mo or £74.99/year. AI Companions on their own are £7.99/mo, and are included free with every other plan.' },
 ];
 
 function scrollTo(id) {
@@ -274,12 +279,12 @@ export default function Home() {
         <div className="section">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <div className="section-label" style={{ color: 'var(--cyan)' }}>Pricing</div>
-            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Plans from £2.99/month. Start free for 7 days.</h2>
+            <h2 className="section-title" style={{ margin: '0 auto 16px' }}>Plans from £5.99/month. Start free for 7 days.</h2>
             <p style={{ fontSize: 15, color: '#8B8B96', maxWidth: 560, margin: '0 auto 24px', lineHeight: 1.6 }}>Download the app and try a Deep Connection free for 7 days from sign-up — no card needed. After that you can still read your conversations; subscribe to keep messaging.</p>
             <div className="pricing-toggle">
               <button className={billing === 'monthly' ? 'active' : ''} onClick={() => setBilling('monthly')}>Monthly</button>
               <button className={billing === 'yearly' ? 'active' : ''} onClick={() => setBilling('yearly')}>
-                6 months+ <span style={{ fontSize: 11, color: 'var(--green)', marginLeft: 4 }}>Best value</span>
+                Yearly <span style={{ fontSize: 11, color: 'var(--green)', marginLeft: 4 }}>Save up to 58%</span>
               </button>
             </div>
           </div>
@@ -289,32 +294,18 @@ export default function Home() {
               return (
                 <div key={i} className="glass" style={{ padding: 28, position: 'relative', border: p.popular ? '1.5px solid rgba(34,211,238,0.3)' : undefined }}>
                   {p.popular && <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', fontSize: 11, fontWeight: 600, padding: '4px 14px', borderRadius: 20, background: 'var(--gradient)', color: '#fff', whiteSpace: 'nowrap' }}>Most popular</div>}
-                  {p.introOffer && billing === 'yearly' && <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', fontSize: 11, fontWeight: 600, padding: '4px 14px', borderRadius: 20, background: '#EC4899', color: '#fff', whiteSpace: 'nowrap' }}>Special offer</div>}
                   <div style={{ fontSize: 14, fontWeight: 600, color: p.color, marginBottom: 4 }}>{p.tier}</div>
                   <div style={{ fontSize: 12, color: 'var(--text-dim)', marginBottom: 16 }}>{p.desc}</div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
                   <div>
-                        {p.isIntro && billing === 'yearly' ? (
-                          <>
-                            <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>£3.99</span>
-                            <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>/6 months</span>
-                          </>
-                        ) : (
-                          <>
-                            <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>£{price}</span>
-                            <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>{billing === 'yearly' ? (p.yearLabel || '/mo') : '/mo'}</span>
-                          </>
-                        )}
+                        <>
+                          <span style={{ fontFamily: 'var(--font-heading)', fontSize: 40, fontWeight: 800 }}>£{price}</span>
+                          <span style={{ fontSize: 14, color: 'var(--text-dim)' }}>{billing === 'yearly' ? (p.yearLabel || '/mo') : '/mo'}</span>
+                        </>
                       </div>
                   </div>
-                  {billing === 'yearly' && !p.isIntro && (
+                  {billing === 'yearly' && (
                     <div style={{ fontSize: 12, color: 'var(--green)', marginBottom: 8 }}>Billed annually</div>
-                  )}
-                  {p.isIntro && billing === 'yearly' && (
-                    <div style={{ fontSize: 12, color: '#EC4899', marginBottom: 8 }}>Then £2.99/month or £29.88/year</div>
-                  )}
-                  {p.isIntro && billing === 'monthly' && (
-                    <div style={{ fontSize: 12, color: '#EC4899', marginBottom: 8 }}>Start with £3.99 for your first 6 months</div>
                   )}
                   <div style={{ height: 1, background: 'var(--border)', margin: '16px 0' }} />
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
@@ -361,7 +352,7 @@ export default function Home() {
             <Image src="/logo.png" alt="Riff" width={56} height={56} style={{ borderRadius: 14, marginBottom: 20 }} />
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, fontWeight: 700, marginBottom: 12, letterSpacing: '-0.5px' }}>Ready to riff?</h2>
             <p style={{ fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 28 }}>
-              Start from £2.99/month. Answer questions. Discover someone who helps you grow.
+              Start from £5.99/month. Answer questions. Discover someone who helps you grow.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <button className="btn-primary">🍎 App Store</button>

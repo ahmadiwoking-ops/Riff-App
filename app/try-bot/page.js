@@ -736,7 +736,7 @@ function FadeStage({ mode }) {
         <p style={{ fontSize: 14, color: '#94A3B8', lineHeight: 1.7 }}>{mode === 'circle' ? 'No hard feelings. The remaining members can continue their circle without you. That is how Riff keeps things pressure-free.' : 'No awkwardness. No ghosting. Just a respectful end that both people feel okay about. That is how Riff works.'}</p>
       </div>
       <div style={{ fontSize: 14, color: '#94A3B8', marginBottom: 20 }}>{mode === 'circle' ? 'In the real app, you would be matched into a new circle based on your answers.' : 'In the real app, you would be matched with someone new based on your compatibility answers.'}</div>
-      <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £2.99/mo</a>
+      <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £5.99/mo</a>
     </div>
   );
 }
@@ -777,7 +777,7 @@ function FinalStage({ mode }) {
         )}
 
         <div style={{ fontSize: 14, color: '#94A3B8', marginBottom: 20 }}>That was a taste of Riff. Ready for the real thing?</div>
-        <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £2.99/mo</a>
+        <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #8B5CF6, #EC4899)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £5.99/mo</a>
       </div>
     );
   }
@@ -823,7 +823,7 @@ function FinalStage({ mode }) {
       )}
 
       <div style={{ fontSize: 14, color: '#94A3B8', marginBottom: 20 }}>That was a taste of Riff. Ready for the real thing?</div>
-      <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #84CC16, #22C55E)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £2.99/mo</a>
+      <a href="/#pricing" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 14, background: 'linear-gradient(135deg, #84CC16, #22C55E)', color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>View plans from £5.99/mo</a>
     </div>
   );
 }

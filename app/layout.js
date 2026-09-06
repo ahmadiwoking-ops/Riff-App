@@ -109,15 +109,9 @@ const jsonLd = {
   },
   offers: {
     '@type': 'Offer',
-    price: '2.99',
+    price: '5.99',
     priceCurrency: 'GBP',
-    description: 'Plans from £2.99/month',
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    ratingCount: '127',
-    bestRating: '5',
+    description: 'Plans from £5.99/month',
   },
   featureList: [
     'Meet like-minded people through compatibility matching',
@@ -172,7 +166,7 @@ const faqJsonLd = {
       name: 'How much does Riff cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Riff plans start from £2.99 per month. The Explorer plan at £5.99/month adds more connections and priority matching. You can try the AI companion demo for free before subscribing.',
+        text: 'Riff plans start from £5.99 per month. Explorer at £8.99/month adds more connections and local circles. You can try the AI companion demo for free before subscribing.',
       },
     },
   ],

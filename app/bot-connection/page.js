@@ -10,6 +10,7 @@ const PERSONAS = [
   { alias: 'Aisha', age: 32, flag: '🇦🇪', role: 'Finance Director', img: '/personas/aisha.png', color: '#F59E0B', bio: 'Polished, precise investment strategist who reads markets like stories. Calm under pressure, generous with knowledge.', helps: 'Finance, investing, career growth' },
   { alias: 'Felix', age: 35, flag: '🇩🇪', role: 'Head Chef', img: '/personas/felix.png', color: '#EF4444', bio: 'Runs a Michelin-tipped kitchen in Berlin. Passionate, exacting and surprisingly philosophical about craft and patience.', helps: 'Craft, creativity, discipline' },
   { alias: 'Sam', age: 29, flag: '🇳🇬', role: 'Sports Coach', img: '/personas/sam.png', color: '#10B981', bio: 'Youth football coach and personal trainer. High-energy, motivating, and always in your corner pushing you to be better.', helps: 'Fitness, motivation, goal-setting' },
+  { alias: 'Amara', age: 25, flag: '🇰🇪', role: 'Graphic Designer', img: '/personas/amara.png', color: '#F97316', bio: 'Teaches art to kids at weekends and wants African design taken seriously worldwide. Energetic, funny and fiercely optimistic without being naive.', helps: 'Creativity, design, confidence' },
 ];
 
 const BENEFITS = [

@@ -1,4 +1,5 @@
 import './globals.css';
+import LaunchBanner from './components/LaunchBanner';
 
 export const metadata = {
   metadataBase: new URL('https://riff-app.co.uk'),
@@ -187,7 +188,10 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <LaunchBanner />
+        {children}
+      </body>
     </html>
   );
 }

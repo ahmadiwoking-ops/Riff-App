@@ -32,6 +32,8 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState('');
   const [tab, setTab] = useState('dashboard');
   const [stats, setStats] = useState(null);
+  const [waitlist, setWaitlist] = useState(null);
+  const [sending, setSending] = useState(false);
   const [users, setUsers] = useState([]);
   const [userSearch, setUserSearch] = useState('');
   const [flags, setFlags] = useState([]);
@@ -67,7 +69,24 @@ export default function AdminPage() {
     if (tab === 'dashboard') adminFetch('/api/admin/stats').then(setStats).catch(() => {});
     if (tab === 'users') adminFetch('/api/admin/users?search=' + userSearch).then(d => setUsers(d.users || [])).catch(() => {});
     if (tab === 'flags') adminFetch('/api/admin/flags').then(d => setFlags(d.flags || [])).catch(() => {});
+    if (tab === 'waitlist') adminFetch('/api/waitlist').then(setWaitlist).catch(() => setWaitlist(null));
   }, [token, tab, userSearch]);
+
+  async function sendLaunchEmail() {
+    try {
+      const dry = await adminFetch('/api/waitlist/broadcast', { method: 'POST', body: JSON.stringify({ dryRun: true }) });
+      if (!dry.wouldSend) { alert('Nobody left to email.'); return; }
+      const msg = 'Send the launch email to ' + dry.wouldSend + ' people?'
+        + (dry.remainingAfter ? ('\n\n' + dry.remainingAfter + ' more would remain for a second run.') : '')
+        + '\n\nThis cannot be undone. Check the App Store and Play links are live first.';
+      if (!confirm(msg)) return;
+      setSending(true);
+      const res = await adminFetch('/api/waitlist/broadcast', { method: 'POST', body: JSON.stringify({}) });
+      alert('Sent ' + res.sent + '. Failed ' + (res.failed || []).length + '. Remaining ' + res.remaining + '.');
+      adminFetch('/api/waitlist').then(setWaitlist).catch(() => {});
+    } catch (e) { alert(e.message || 'Could not send.'); }
+    setSending(false);
+  }
 
   async function resolveFlag(id, action) {
     try {
@@ -138,6 +157,7 @@ export default function AdminPage() {
     { key: 'users', label: 'Users', icon: '👥' },
     { key: 'flags', label: 'Safety', icon: '🛡' },
     { key: 'content', label: 'Content Studio', icon: '✨' },
+    { key: 'waitlist', label: 'Waiting list', icon: '✉️' },
   ];
 
   return (
@@ -310,6 +330,40 @@ export default function AdminPage() {
         )}
 
         {/* ═══ CONTENT STUDIO TAB ═══ */}
+        {/* ═══ WAITING LIST TAB ═══ */}
+        {tab === 'waitlist' && (
+          <div>
+            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: 22, fontWeight: 700, color: '#E2E8F0', marginBottom: 20 }}>Waiting list</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 24 }}>
+              {[['Total', waitlist ? waitlist.total : 0, '#E2E8F0'], ['Not yet emailed', waitlist ? waitlist.pending : 0, '#22D3EE'], ['Emailed', waitlist ? waitlist.notified : 0, '#22C55E'], ['Unsubscribed', waitlist ? waitlist.unsubbed : 0, '#64748B']].map(([n, c, col]) => (
+                <div key={n} style={{ background: '#0F1420', border: '1px solid #1E2740', borderRadius: 14, padding: 18 }}>
+                  <div style={{ fontSize: 12, color: '#64748B', marginBottom: 6 }}>{n}</div>
+                  <div style={{ fontSize: 30, fontWeight: 800, color: col }}>{c}</div>
+                </div>
+              ))}
+            </div>
+            <button onClick={sendLaunchEmail} disabled={!(waitlist && waitlist.pending > 0 && !sending)} style={{
+              padding: '12px 22px', borderRadius: 12, border: 'none', fontFamily: 'inherit', fontSize: 13, fontWeight: 700,
+              background: (waitlist && waitlist.pending > 0 && !sending) ? '#8B5CF6' : '#1E2740', color: (waitlist && waitlist.pending > 0 && !sending) ? '#fff' : '#64748B',
+              cursor: (waitlist && waitlist.pending > 0 && !sending) ? 'pointer' : 'default', marginBottom: 10,
+            }}>{sending ? 'Sending…' : 'Send launch announcement'}</button>
+            <div style={{ fontSize: 12, color: '#64748B', marginBottom: 24, lineHeight: 1.6 }}>
+              Goes only to people who have not had it and have not opted out. Safe to run more than once.
+            </div>
+            <div style={{ background: '#0F1420', border: '1px solid #1E2740', borderRadius: 14, padding: 18 }}>
+              {waitlist && waitlist.entries && waitlist.entries.length ? waitlist.entries.map(e => (
+                <div key={e.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: 13 }}>
+                  <div style={{ flex: 1, color: '#E2E8F0' }}>{e.email}</div>
+                  <div style={{ width: 110, color: '#64748B' }}>{e.source || '—'}</div>
+                  <div style={{ width: 92, color: '#64748B' }}>{new Date(e.createdAt).toLocaleDateString('en-GB')}</div>
+                  <div style={{ width: 104, textAlign: 'right', fontWeight: 600, color: e.unsubbed ? '#64748B' : e.notified ? '#22C55E' : '#22D3EE' }}>
+                    {e.unsubbed ? 'unsubscribed' : e.notified ? 'emailed' : 'waiting'}
+                  </div>
+                </div>
+              )) : <div style={{ color: '#64748B', fontSize: 13 }}>Nobody on the list yet.</div>}
+            </div>
+          </div>
+        )}
         {tab === 'content' && (
           <div>
             <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: 22, fontWeight: 700, color: '#E2E8F0', marginBottom: 4 }}>Content Studio</h2>

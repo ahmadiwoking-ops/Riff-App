@@ -62,7 +62,7 @@ const PRICING = [
 // Rendered on its own row beneath the three plans.
 const COMPANION_PLAN = {
   tier: 'AI Companions', priceM: '7.99', priceY: '71.88', color: '#8B5CF6', desc: 'Companions only',
-  features: ['25 AI companions', '500 messages a month', 'Voice responses', 'Games and reflective mode', 'Included free with every other plan'],
+  features: ['25 AI companions', '500 messages a month', 'Debate costs 2 credits a message', 'Voice responses', 'Games and reflective mode', 'Included free with every other plan'],
   cta: 'Start chatting', yearLabel: '/year',
 };
 

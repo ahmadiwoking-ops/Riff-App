@@ -55,7 +55,7 @@ export default function Pricing() {
     color: 'var(--gradient)',
     monthly: { price: '£7.99', period: '/mo', note: null },
     yearly: { price: '£71.88', period: '/year', note: 'Save 25% against paying monthly' },
-    features: ['25 AI companions', '500 messages a month', 'Voice responses', 'Games and reflective mode', 'Included free with every plan above'],
+    features: ['25 AI companions', '500 messages a month', 'Debate costs 2 credits a message', 'Voice responses', 'Games and reflective mode', 'Included free with every plan above'],
     cta: 'Start chatting',
   };
 

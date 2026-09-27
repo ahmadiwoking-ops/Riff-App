@@ -6,6 +6,7 @@ const FOOTER_COLS = [
     { label: 'How it works', href: '/how-it-works' },
     { label: 'Deep Connection', href: '/deep-connection' },
     { label: 'Friend Circle', href: '/friend-circle' },
+    { label: 'Debate', href: '/debate' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Safety', href: '/safety' },
   ]},

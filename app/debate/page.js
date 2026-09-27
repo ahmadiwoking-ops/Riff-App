@@ -34,6 +34,21 @@ export default function DebatePage() {
 
   return (
     <div style={{ background: '#050816', minHeight: '100vh' }}>
+      <nav className="nav">
+        <div className="nav-inner">
+          <Link href="/" className="nav-logo">
+            <img src="/logo.png" alt="Riff" width={32} height={32} style={{ borderRadius: 8 }} />
+            <span className="nav-logo-text">Riff</span>
+          </Link>
+          <div className="nav-links">
+            <Link href="/#how" className="nav-link">How it works</Link>
+            <Link href="/#safety" className="nav-link">Safety</Link>
+            <Link href="/#pricing" className="nav-link">Pricing</Link>
+            <Link href="/try-bot" className="btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>Try Riff Demo Free</Link>
+          </div>
+        </div>
+      </nav>
+
 
       {/* ═══ HERO ═══ */}
       <section style={{ padding: '80px 24px 60px', maxWidth: 1100, margin: '0 auto' }}>
@@ -279,6 +294,19 @@ export default function DebatePage() {
           Get started
         </Link>
       </section>
+      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', padding: '34px 24px' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 24, flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+            <img src="/logo.png" alt="Riff" width={26} height={26} style={{ borderRadius: 6 }} />
+            <span style={{ fontFamily: "'Sora', sans-serif", fontSize: 18, fontWeight: 800, color: '#F0ECE5' }}>Riff</span>
+          </Link>
+          <div style={{ display: 'flex', gap: 22, flexWrap: 'wrap' }}>
+            {[["How it works", "/how-it-works"], ["Pricing", "/pricing"], ["Safety", "/safety"], ["AI Companions", "/bot-connection"], ["Contact", "/contact"]].map(function (l) {
+              return <Link key={l[1]} href={l[1]} style={{ fontSize: 13.5, color: '#64748B', textDecoration: 'none' }}>{l[0]}</Link>;
+            })}
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

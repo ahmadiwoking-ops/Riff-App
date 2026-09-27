@@ -13,6 +13,12 @@ const STAGES = [
 
 const FEATURES = [
   {
+    mode: 'Debate', icon: '◈', color: '#8B5CF6',
+    tagline: 'Five specialists. One impartial judge.',
+    desc: 'Argue a subject with someone who actually knows it and will concede a point when you earn it — then have a separate judge read the whole thing and score who argued better. Speak your side aloud or type it, in any language.',
+    highlights: ['Religion, political philosophy, AI, evidence — or anything, with Vera', 'Scored on engagement, concession, progression, evidence and conduct', 'Speak your argument; they always reply in writing', '50 free debate messages, then 2 credits each'],
+  },
+  {
     mode: 'Deep Connection', icon: '◎', color: '#22D3EE',
     tagline: 'One person. Meaningful growth.',
     desc: 'Matched with someone who complements your goals and skills. Talk by text and voice, reveal your faces at the same moment, then unlock video. Built for finding mentors, collaborators, and people who genuinely help you grow.',
@@ -179,6 +185,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ DEBATE ═══ */}
+      <section id="debate" style={{ background: "linear-gradient(180deg, #050816 0%, #0c0a1f 100%)" }}>
+        <div className="section">
+          <div style={{ display: "inline-block", padding: "5px 13px", borderRadius: 999, marginBottom: 16, background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.35)", fontSize: 11.5, fontWeight: 700, color: "#F59E0B", letterSpacing: 0.5 }}>NEW</div>
+          <h2 className="section-title">Think you can win the argument?</h2>
+          <p className="section-sub" style={{ marginBottom: 36, maxWidth: 620 }}>Pick a subject, pick your side, and argue it out with someone who knows the material and will not simply agree with you. Then a separate judge reads every word and says who made the better case.</p>
+
+          <div style={{ display: "flex", gap: 26, flexWrap: "wrap", alignItems: "center" }}>
+            <div style={{ flex: "1 1 280px", minWidth: 260 }}>
+              {[["Five specialists", "Religion, politics, AI, evidence — and one who will take on anything."], ["Any language", "Argue in whatever you think in. Speak it aloud if you prefer."], ["An impartial judge", "Scores both sides on five things, and will tell you when you won."]].map(function (row) {
+                return (
+                  <div key={row[0]} style={{ marginBottom: 18 }}>
+                    <div style={{ fontSize: 15.5, fontWeight: 700, color: "#F0ECE5", marginBottom: 4 }}>{row[0]}</div>
+                    <div style={{ fontSize: 13.5, color: "#8B8B96", lineHeight: 1.65 }}>{row[1]}</div>
+                  </div>
+                );
+              })}
+              <a href="/debate" className="btn-primary" style={{ display: "inline-block", marginTop: 8, padding: "13px 26px", borderRadius: 999, textDecoration: "none", fontSize: 14.5 }}>See how Debate works →</a>
+            </div>
+
+            <div style={{ flex: "1 1 300px", display: "flex", gap: 14, justifyContent: "center" }}>
+              {["/debate/debate-companions.jpg", "/debate/debate-exchange.jpg"].map(function (src, i) {
+                return (
+                  <div key={src} style={{ flex: 1, maxWidth: 230, borderRadius: 18, overflow: "hidden", border: "1px solid rgba(139,92,246,0.3)", boxShadow: "0 16px 44px rgba(0,0,0,0.6)", transform: i ? "translateY(18px)" : "none" }}>
+                    <Image src={src} alt="Debate in Riff" width={640} height={1300} style={{ width: "100%", height: "auto", display: "block" }} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
       {/* ═══ HOW IT WORKS ═══ */}
       <section id="how" style={{ background: '#080B14' }}>
         <div className="section">

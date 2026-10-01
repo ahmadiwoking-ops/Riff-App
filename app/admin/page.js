@@ -228,6 +228,13 @@ export default function AdminPage() {
                     <span style={{ color: u.trustScore === 'green' ? '#22C55E' : u.trustScore === 'yellow' ? '#F59E0B' : '#EF4444' }}>●</span>
                     <span style={{ color: u.isBanned ? '#EF4444' : '#22C55E', fontSize: 12 }}>{u.isBanned ? 'Banned' : 'Active'}</span>
                     <div style={{ display: 'flex', gap: 6 }} onClick={e => e.stopPropagation()}>
+                      <button onClick={async () => {
+                        if (!confirm('Send a password reset link to ' + u.email + '?\n\nThey will get an email with a link that works once and expires in an hour.')) return;
+                        try {
+                          const res = await adminFetch('/api/admin/users/' + u.id + '/send-reset', { method: 'POST', body: JSON.stringify({}) });
+                          alert(res.error ? ('Could not send: ' + res.error) : ('Reset link sent to ' + res.email));
+                        } catch (e) { alert('Could not send that reset link.'); }
+                      }} style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid #8B5CF6', background: 'transparent', color: '#A78BFA', fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Reset password</button>
                       {u.isBanned ? (
                         <button onClick={async () => { try { await adminFetch('/api/admin/users/' + u.id + '/unban', { method: 'POST', body: JSON.stringify({}) }); setUsers(prev => prev.map(usr => usr.id === u.id ? { ...usr, isBanned: false } : usr)); } catch {} }} style={{ padding: '4px 10px', borderRadius: 6, border: 'none', background: '#22C55E', color: '#fff', fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Unban</button>
                       ) : (

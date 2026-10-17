@@ -4,8 +4,8 @@ import { useState, useRef, useEffect } from 'react';
 const API = 'https://web-production-31dae.up.railway.app';
 
 const PLANS = [
-  { id: 'single', name: 'Riff Single', tagline: '1 deep connection', priceM: '£5.99', priceY: '£35.00', color: '#EC4899', yearLabel: '/year', features: ['1 Deep Connection', '1 Friend Circle', '🟢 Green verification included', 'Voice notes and photo sharing', 'AI Companions included'] },
-  { id: 'bot_connection', name: 'AI Companions', tagline: 'Companions only', priceM: '£7.99', priceY: '£71.88', color: '#8B5CF6', yearLabel: '/year', features: ['25 AI companions', '500 messages a month', 'Voice responses', 'Games and reflective mode', 'Included free with every plan below'] },
+  { id: 'single', name: 'Riff Single', tagline: '1 deep connection', priceM: '£5.99', priceY: '£35.00', color: '#EC4899', yearLabel: '/year', features: ['1 Deep Connection', '1 Friend Circle', '🟢 Green verification included', 'Voice notes and photo sharing', '5 AI companions included'] },
+  { id: 'bot_connection', name: 'AI Companions', tagline: 'Companions only', priceM: '£7.99', priceY: '£49.99', color: '#8B5CF6', yearLabel: '/year', features: ['25 AI companions', '500 messages a month', 'Voice responses', 'Games and reflective mode', 'Included with Explorer and Inner Circle'] },
   { id: 'explorer', name: 'Explorer', tagline: 'More connections', priceM: '£8.99', priceY: '£45.00', color: '#22D3EE', popular: true, yearLabel: '/year', features: ['2 Deep Connections', '3 Friend Circles', '🟢 Green verification included', 'Local circles by county', 'AI Companions included'] },
   { id: 'inner_circle', name: 'Inner Circle', tagline: 'Full experience', priceM: '£11.99', priceY: '£74.99', color: '#F59E0B', yearLabel: '/year', features: ['Unlimited connections over time', 'Five at a time, so you can go deep', 'Unlimited Friend Circles', '🟢 Green verification included', 'Parallel Lives'] },
 ];

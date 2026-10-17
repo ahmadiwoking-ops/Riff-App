@@ -16,7 +16,7 @@ export default function Pricing() {
       yearly: { price: '£35.00', period: '/year', note: 'Save 51% against paying monthly' },
       badge: null,
       badgeColor: null,
-      features: ['1 Deep Connection', '1 Friend Circle', '🟢 Green verification included', 'Voice notes and photo sharing', 'AI Companions included'],
+      features: ['1 Deep Connection', '1 Friend Circle', '🟢 Green verification included', 'Voice notes and photo sharing', '5 AI companions included'],
       cta: 'Get started',
       ctaStyle: 'outline',
     },
@@ -54,8 +54,8 @@ export default function Pricing() {
     tagline: 'Companions only',
     color: 'var(--gradient)',
     monthly: { price: '£7.99', period: '/mo', note: null },
-    yearly: { price: '£71.88', period: '/year', note: 'Save 25% against paying monthly' },
-    features: ['25 AI companions', '500 messages a month', 'Debate costs 2 credits a message', 'Voice responses', 'Games and reflective mode', 'Included free with every plan above'],
+    yearly: { price: '£49.99', period: '/year', note: 'Save 48% against paying monthly' },
+    features: ['25 AI companions', '500 messages a month', 'Debate costs 2 credits a message', 'Voice responses', 'Games and reflective mode', 'Included with Explorer and Inner Circle'],
     cta: 'Start chatting',
   };
 

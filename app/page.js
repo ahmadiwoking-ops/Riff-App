@@ -43,17 +43,17 @@ const SAFETY = [
 
 const PRICING = [
   {
-    tier: 'Riff Single', priceM: '5.99', priceY: '35.00', color: '#EC4899', desc: '1 deep connection',
+    tier: 'Riff Single', priceM: '5.99', priceY: '34.99', color: '#EC4899', desc: '1 deep connection',
     features: ['1 Deep Connection', '1 Friend Circle', '\u{1F7E2} Green verification included', 'Voice notes and photo sharing', '5 AI companions included'],
     cta: 'Get started', yearLabel: '/year',
   },
   {
-    tier: 'Explorer', priceM: '8.99', priceY: '45.00', color: '#22D3EE', desc: 'More connections', popular: true,
+    tier: 'Explorer', priceM: '8.99', priceY: '44.99', color: '#22D3EE', desc: 'More connections', popular: true,
     features: ['2 Deep Connections', '3 Friend Circles', '\u{1F7E2} Green verification included', 'Local circles by county', 'AI Companions included'],
     cta: 'Start exploring', yearLabel: '/year',
   },
   {
-    tier: 'Inner Circle', priceM: '11.99', priceY: '74.99', color: '#F59E0B', desc: 'Full experience',
+    tier: 'Inner Circle', priceM: '9.99', priceY: '79.99', color: '#F59E0B', desc: 'Full experience',
     features: ['Unlimited connections over time', 'Five at a time, so you can go deep', 'Unlimited Friend Circles', '\u{1F7E2} Green verification included', 'Parallel Lives'],
     cta: 'Go all in', yearLabel: '/year',
   },
@@ -73,7 +73,7 @@ const FAQS = [
   { q: 'How do you prevent catfishing?', a: 'Every user submits a government ID and takes a live selfie with liveness detection (blink and head-turn prompts). Photos in the app require in-app capture and pass reverse image search. Your Trust Score is visible to your connections.' },
   { q: 'What if I don\'t connect with my match after the reveal?', a: 'Both people independently choose \'Continue\' or \'Let it fade.\' If either person chooses to fade, the connection closes gracefully. Neither person knows who made the choice. No blame, no awkwardness.' },
   { q: 'Is my data safe?', a: 'Photos and voice messages are encrypted in transit and at rest. Your verified identity is never shared with other users — they only see your Trust Score colour. We comply with GDPR, California privacy laws, and the EU AI Act.' },
-  { q: 'How much does it cost?', a: 'Everyone starts with a 7-day free trial. Riff Single is £5.99/mo or £35/year, Explorer £8.99/mo or £45/year, and Inner Circle £11.99/mo or £74.99/year. AI Companions on their own are £7.99/mo or £49.99/year, and are included with Explorer and Inner Circle. Riff Single includes 5 companions.' },
+  { q: 'How much does it cost?', a: 'Everyone starts with a 7-day free trial. Riff Single is £5.99/mo or £34.99/year, Explorer £8.99/mo or £44.99/year, and Inner Circle £9.99/mo or £79.99/year. AI Companions on their own are £7.99/mo or £49.99/year, and are included with Explorer and Inner Circle. Riff Single includes 5 companions.' },
 ];
 
 function scrollTo(id) {

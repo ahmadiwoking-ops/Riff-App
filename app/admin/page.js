@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { EmailTab, EmailUserModal } from './EmailTab';
 
 const API = 'https://web-production-31dae.up.railway.app';
 
@@ -46,6 +47,7 @@ export default function AdminPage() {
   const [results, setResults] = useState({});
   const [copied, setCopied] = useState(null);
   const [expandedUser, setExpandedUser] = useState(null);
+  const [emailUser, setEmailUser] = useState(null);
 
   async function adminFetch(path, opts = {}) {
     const res = await fetch(API + path, { ...opts, headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token, ...opts.headers } });
@@ -157,6 +159,7 @@ export default function AdminPage() {
     { key: 'users', label: 'Users', icon: '👥' },
     { key: 'flags', label: 'Safety', icon: '🛡' },
     { key: 'content', label: 'Content Studio', icon: '✨' },
+    { key: 'email', label: 'Email', icon: '📨' },
     { key: 'waitlist', label: 'Waiting list', icon: '✉️' },
   ];
 
@@ -227,7 +230,8 @@ export default function AdminPage() {
                     <span style={{ color: u.plan === 'free' ? '#64748B' : '#22C55E' }}>{u.plan}</span>
                     <span style={{ color: u.trustScore === 'green' ? '#22C55E' : u.trustScore === 'yellow' ? '#F59E0B' : '#EF4444' }}>●</span>
                     <span style={{ color: u.isBanned ? '#EF4444' : '#22C55E', fontSize: 12 }}>{u.isBanned ? 'Banned' : 'Active'}</span>
-                    <div style={{ display: 'flex', gap: 6 }} onClick={e => e.stopPropagation()}>
+                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }} onClick={e => e.stopPropagation()}>
+                      <button onClick={() => setEmailUser(u)} style={{ padding: '4px 10px', borderRadius: 6, border: '1px solid #22D3EE', background: 'transparent', color: '#22D3EE', fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Email</button>
                       <button onClick={async () => {
                         if (!confirm('Send a password reset link to ' + u.email + '?\n\nThey will get an email with a link that works once and expires in an hour.')) return;
                         try {
@@ -306,6 +310,10 @@ export default function AdminPage() {
             </div>
           </div>
         )}
+
+        {/* ═══ EMAIL TAB ═══ */}
+        {tab === 'email' && <EmailTab adminFetch={adminFetch} />}
+        {emailUser && <EmailUserModal user={emailUser} adminFetch={adminFetch} onClose={() => setEmailUser(null)} />}
 
         {/* ═══ FLAGS TAB ═══ */}
         {tab === 'flags' && (

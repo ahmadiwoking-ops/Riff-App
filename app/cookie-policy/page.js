@@ -1,20 +1,57 @@
 import PageShell from '../components/PageShell';
-export const metadata = { title: 'Cookie Policy — Riff', description: 'How Riff uses cookies and similar technologies.' };
+export const metadata = { title: "Cookie Policy — Riff", description: "How Riff uses cookies and similar storage." };
+
+// Written to match what the Riff app and backend actually do (October 2026).
+// If a feature or provider changes, update this text in the same change.
+const SECTIONS = [
+  {
+    "body": [
+      "This page explains how the Riff website and app use cookies and similar storage."
+    ]
+  },
+  {
+    "h": "The website",
+    "body": [
+      "The Riff website does not use advertising cookies, analytics cookies, tracking pixels or any other tracking. It does not set cookies to identify you. If we ever add analytics or anything that is not strictly necessary, we will ask for your permission first and update this page."
+    ]
+  },
+  {
+    "h": "The app",
+    "body": [
+      "The Riff app does not use cookies. It stores your login token in your phone's secure storage so you stay signed in, and keeps a few settings on your device (for example, whether you have seen a tip). Signing out removes your login token. Deleting the app removes the rest."
+    ]
+  },
+  {
+    "h": "Questions",
+    "body": [
+      "Email privacy@riff-app.co.uk. Our Privacy Policy explains how we handle personal information more generally."
+    ]
+  }
+];
+
+const H2 = { fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginTop: 40, marginBottom: 12 };
+const P = { marginBottom: 16 };
+const B = { color: 'var(--text-primary)' };
+function Item({ item }) {
+  if (typeof item === 'string') return <p style={P}>{item}</p>;
+  if (item.list) return (
+    <ul style={{ marginBottom: 16, paddingLeft: 22 }}>
+      {item.list.map((li, i) => <li key={i} style={{ marginBottom: 8 }}>{typeof li === 'string' ? li : <><strong style={B}>{li.b}</strong> {li.t}</>}</li>)}
+    </ul>
+  );
+  return <p style={P}><strong style={B}>{item.b}</strong> {item.t}</p>;
+}
+
 export default function CookiePolicy() {
   return (
     <PageShell title="Cookie policy" subtitle="LEGAL" accent="#8B5CF6">
-      <p style={{ marginBottom: 8, fontSize: 13, color: 'var(--text-dim)' }}>Last updated: June 2026</p>
-      <p style={{ marginBottom: 16 }}>Riff uses a minimal number of cookies. We do not use advertising cookies or sell cookie data to third parties.</p>
-
-      <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginTop: 40, marginBottom: 12 }}>What cookies we use</h2>
-      <p style={{ marginBottom: 16 }}><strong style={{ color: 'var(--text-primary)' }}>Essential cookies.</strong> Authentication tokens that keep you logged in. Session identifiers. These are strictly necessary for the app to function and cannot be disabled.</p>
-      <p style={{ marginBottom: 16 }}><strong style={{ color: 'var(--text-primary)' }}>Analytics cookies.</strong> We use privacy-respecting analytics to understand how people use Riff (page views, feature usage, error rates). No personal data is attached to analytics events. No cross-site tracking.</p>
-
-      <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginTop: 40, marginBottom: 12 }}>What we do not use</h2>
-      <p style={{ marginBottom: 16 }}>No advertising cookies. No social media tracking pixels. No cross-site tracking. No fingerprinting. No selling cookie data.</p>
-
-      <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 600, color: 'var(--text-primary)', marginTop: 40, marginBottom: 12 }}>Managing cookies</h2>
-      <p style={{ marginBottom: 16 }}>You can clear cookies at any time through your browser settings. Clearing essential cookies will log you out. For more information, contact privacy@riff-app.co.uk.</p>
+      <p style={{ marginBottom: 8, fontSize: 13, color: 'var(--text-dim)' }}>Last updated: October 2026</p>
+      {SECTIONS.map((s, i) => (
+        <div key={i}>
+          {s.h ? <h2 style={H2}>{s.h}</h2> : null}
+          {s.body.map((item, j) => <Item key={j} item={item} />)}
+        </div>
+      ))}
     </PageShell>
   );
 }

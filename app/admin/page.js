@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { EmailTab, EmailUserModal } from './EmailTab';
+import { DeleteTab } from './DeleteTab';
 
 const API = 'https://web-production-31dae.up.railway.app';
 
@@ -48,6 +49,12 @@ export default function AdminPage() {
   const [copied, setCopied] = useState(null);
   const [expandedUser, setExpandedUser] = useState(null);
   const [emailUser, setEmailUser] = useState(null);
+  const [canDelete, setCanDelete] = useState(false);
+  // Only accounts in ADMIN_DELETE_USER_IDS get a 200 here; everyone else never sees the tab.
+  useEffect(() => {
+    if (!token) { setCanDelete(false); return; }
+    fetch(API + '/api/admin-delete/status', { headers: { Authorization: 'Bearer ' + token } }).then(r => setCanDelete(r.ok)).catch(() => setCanDelete(false));
+  }, [token]);
 
   async function adminFetch(path, opts = {}) {
     const res = await fetch(API + path, { ...opts, headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token, ...opts.headers } });
@@ -162,6 +169,7 @@ export default function AdminPage() {
     { key: 'email', label: 'Email', icon: '📨' },
     { key: 'waitlist', label: 'Waiting list', icon: '✉️' },
   ];
+  if (canDelete) TABS.push({ key: 'delete', label: 'Delete accounts', icon: '🗑' });
 
   return (
     <div style={{ minHeight: '100vh', background: '#050816', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -313,6 +321,7 @@ export default function AdminPage() {
 
         {/* ═══ EMAIL TAB ═══ */}
         {tab === 'email' && <EmailTab adminFetch={adminFetch} />}
+        {tab === 'delete' && canDelete && <DeleteTab adminFetch={adminFetch} />}
         {emailUser && <EmailUserModal user={emailUser} adminFetch={adminFetch} onClose={() => setEmailUser(null)} />}
 
         {/* ═══ FLAGS TAB ═══ */}

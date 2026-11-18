@@ -171,6 +171,10 @@ const SECTIONS = [
             "t": "- sending our emails (receives your email address and the email). Replies to us are received through Microsoft 365."
           },
           {
+            "b": "Discord",
+            "t": "- if you use the \"Say hello\" form on our website, the name, area and message you type are posted publicly in the Riff Discord server. Discord is based in the United States."
+          },
+          {
             "b": "ip-api.com",
             "t": "- receives your sign-up IP address to return an approximate location."
           }

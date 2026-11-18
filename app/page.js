@@ -107,6 +107,7 @@ export default function Home() {
             {NAV_ITEMS.map((n) => (
               <button key={n.id} className="nav-link" onClick={() => scrollTo(n.id)}>{n.label}</button>
             ))}
+            <a href="/community" className="nav-link" style={{ textDecoration: 'none' }}>Discord</a>
             <button className="btn-primary" style={{ padding: '10px 24px', fontSize: 13 }}>Download app</button>
           </div>
           <button className="nav-hamburger" onClick={() => setMobileNav(!mobileNav)}>
@@ -117,6 +118,7 @@ export default function Home() {
           {NAV_ITEMS.map((n) => (
             <button key={n.id} className="nav-link" onClick={() => { scrollTo(n.id); setMobileNav(false); }} style={{ textAlign: 'left', padding: '12px 0' }}>{n.label}</button>
           ))}
+          <a href="/community" className="nav-link" onClick={() => setMobileNav(false)} style={{ display: 'block', textAlign: 'left', padding: '12px 0', textDecoration: 'none' }}>Discord</a>
           <button className="btn-primary" style={{ marginTop: 8, width: '100%', padding: 12 }}>Download app</button>
         </div>
       </nav>
@@ -446,6 +448,7 @@ export default function Home() {
                 { label: 'AI Companions', href: '/bot-connection' },
                 { label: 'Pricing', href: '/pricing' },
                 { label: 'Safety', href: '/safety' },
+                { label: 'Discord community', href: '/community' },
               ]},
               { title: 'Company', links: [
                 { label: 'About us', href: '/about' },

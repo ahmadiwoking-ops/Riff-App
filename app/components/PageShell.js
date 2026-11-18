@@ -9,6 +9,7 @@ const FOOTER_COLS = [
     { label: 'Debate', href: '/debate' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Safety', href: '/safety' },
+    { label: 'Discord community', href: '/community' },
   ]},
   { title: 'Company', links: [
     { label: 'About us', href: '/about' },
@@ -40,6 +41,7 @@ export default function PageShell({ children, title, subtitle, accent }) {
             <Link href="/#how" className="nav-link">How it works</Link>
             <Link href="/#safety" className="nav-link">Safety</Link>
             <Link href="/#pricing" className="nav-link">Pricing</Link>
+            <Link href="/community" className="nav-link">Discord</Link>
             <Link href="/try-bot" className="btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>Try Riff Demo Free</Link>
           </div>
         </div>
